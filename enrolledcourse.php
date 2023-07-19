@@ -36,7 +36,7 @@ $id = $_GET['id'];
     <div class="container-fluid">
         <div class="row" style="margin-top: 90px;">
 
-            <div class="col-md-2" style="background-color: #8080804f;">
+            <div class="col-md-2" style="background-color: #8080804f; height:100vh;">
 
 
 
@@ -142,9 +142,10 @@ $id = $_GET['id'];
                     <p><?= $cur1['answer'] ?></p>
 
                 <?php    } ?>
-                <?php include 'footer.php' ?>
+              
 
             </div>
+            <?php include 'footer.php' ?>
 
 
 
