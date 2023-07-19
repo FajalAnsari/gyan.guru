@@ -2,38 +2,48 @@
 <?php
 session_start();
 // Assuming you have already established a database connection
-$connection =mysqli_connect("localhost",  "root", "", "eduprix");
-// Retrieve quiz questions and options from the database
-$query = "SELECT qq.question_id, qq.question_text, qo.option_id, qo.option_text
-          FROM quiz_questions AS qq
-          JOIN quiz_options AS qo ON qq.question_id = qo.question_id";
-          
-$result = mysqli_query($connection, $query);
+$connection = mysqli_connect("localhost", "root", "", "eduprix");
 
-// Store the retrieved questions and options in an associative array
-$questions = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $questionId = $row['question_id'];
-    $questionText = $row['question_text'];
-    $optionId = $row['option_id'];
-    $optionText = $row['option_text'];
+// Check if the 'id' parameter exists in the URL
+if (isset($_GET['id'])) {
+    $quizId = $_GET['id'];
 
-    // Add options to the corresponding question
-    if (!isset($questions[$questionId])) {
-        $questions[$questionId] = array(
-            'question_text' => $questionText,
-            'options' => array()
+    // Retrieve quiz questions and options from the database for the specified quiz ID
+    $query = "SELECT * FROM quiz 
+              INNER JOIN quiz_questions ON quiz.quizid = quiz_questions.quizid
+              INNER JOIN quiz_options ON quiz_questions.question_id = quiz_options.question_id
+              WHERE quiz.quizid = '$quizId'";
+
+    $result = mysqli_query($connection, $query);
+
+    // Store the retrieved questions and options in an associative array
+    $questions = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $questionId = $row['question_id'];
+        $questionText = $row['question_text'];
+        $optionId = $row['option_id'];
+        $optionText = $row['option_text'];
+
+        // Add options to the corresponding question
+        if (!isset($questions[$questionId])) {
+            $questions[$questionId] = array(
+                'question_text' => $questionText,
+                'options' => array()
+            );
+        }
+
+        $questions[$questionId]['options'][] = array(
+            'option_id' => $optionId,
+            'option_text' => $optionText
         );
     }
-
-    $questions[$questionId]['options'][] = array(
-        'option_id' => $optionId,
-        'option_text' => $optionText
-    );
+} else {
+    // Handle the case when 'id' parameter is not provided in the URL
+    // You can redirect the user or show an error message
+    echo "Quiz ID not provided in the URL.";
 }
-
-
 ?>
+
 
 
 <!DOCTYPE html>
