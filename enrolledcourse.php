@@ -37,54 +37,7 @@ $id = $_GET['id'];
         <div class="row" style="margin-top: 90px;">
 
             <div class="col-md-2" style="background-color: #8080804f; height:100vh;">
-            <?php
-// Fetch all curriculum titles based on the given post_id
-$res = mysqli_query($con, "SELECT * FROM `curicullum_title` WHERE `post_id` = '$id'");
-if (mysqli_num_rows($res) > 0) {
-    while ($data = mysqli_fetch_array($res)) {
-        // Display curriculum title.
-        echo '<h2>' . $data['title'] . '</h2>';
-
-        // Fetch and display related questions for the current curriculum title.
-        $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = {$data['id']}");
-        while ($data2 = mysqli_fetch_array($cur1)) {
-            echo '<div>';
-            echo '<p class="question">' . $data2['question'] . '</p>';
-            echo '</div>';
-        }
-
-        // Remember unique quizzes related to the current curriculum title and curi_id, excluding "Quiz 3".
-       // Remember unique quizzes related to the current curriculum title and curi_id, excluding "Quiz 3".
-$uniqueQuizzes = array();
-$currentDay = "";
-
-// Fetch all quizzes related to the current curriculum title and curi_id.
-$quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '{$data['post_id']}'");
-while ($quizData = mysqli_fetch_array($quizRes)) {
-    // Check if the quiz is not "Quiz 3" and if it is not already added to the uniqueQuizzes array.
-    if ($quizData['quiz'] !== 'Quiz ' && !in_array($quizData['quiz'], $uniqueQuizzes)) {
-        // Add the quiz to the uniqueQuizzes array.
-        $uniqueQuizzes[] = $quizData['quiz'];
-
-        // Check if the current day has changed, and update the currentDay variable accordingly.
-        if (isset($quizData['day_column_name']) && $quizData['day_column_name'] !== $currentDay) {
-            $currentDay = $quizData['day_column_name'];
-            // Display the day title.
-            echo '<div>' . $currentDay . '</div>';
-        }
-
-        // Display the quiz title.
-        echo '<div>';
-        echo '<p class="quiz">' . $quizData['quiz'] . '</p>';
-        echo '</div>';
-    }
-}
-
-    }
-}
-?>
-
-
+           
 
         </div>
 
