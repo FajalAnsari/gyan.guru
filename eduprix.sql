@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2023 at 08:45 AM
+-- Generation Time: Jul 19, 2023 at 01:09 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -171,11 +171,14 @@ CREATE TABLE `quiz` (
 --
 
 INSERT INTO `quiz` (`id`, `quizid`, `quiz`) VALUES
-(1, 1, 'Quiz 1'),
-(2, 2, 'quiz 2'),
-(3, 3, 'Quiz3'),
-(4, 4, 'Quiz4'),
-(5, 2, 'Quiz2');
+(1, 1, 'Quiz 11'),
+(2, 2, 'Quiz 21'),
+(3, 3, 'Quiz31'),
+(4, 4, 'Quiz41'),
+(5, 2, 'Quiz22'),
+(6, 1, 'Quiz12'),
+(7, 3, 'Quiz32'),
+(8, 4, 'Quiz42');
 
 -- --------------------------------------------------------
 
@@ -403,7 +406,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `quiz`
 --
 ALTER TABLE `quiz`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `quiz_options`
