@@ -36,149 +36,57 @@ $id = $_GET['id'];
     <div class="container-fluid">
         <div class="row" style="margin-top: 90px;">
 
-<<<<<<< HEAD
-            <div class="col-md-2" style="background-color: #8080804f;">
-=======
             <div class="col-md-2" style="background-color: #8080804f; height:100vh;">
-
-
-
-<!-- ///////////////////////////old code -->
-                <!-- <?php
-                        $res = mysqli_query($con, "SELECT * FROM `curicullum_title` WHERE `post_id` = '$id'");
-                        if (mysqli_num_rows($res) > 0) {
-
-                            while ($data = mysqli_fetch_array($res)) { ?>
-                        <li class="questioncuri">
-                            <?= $data['title'] ?>
-                        </li>
-                        <?php
-                                $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = $data[id]  ");
-                                while ($data2 = mysqli_fetch_array($cur1)) { ?>
-                            <div>
-                                <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $data2['id'] ?>" class="ancquestion">
-                                    <p class="curi"><?= $data2['question']; ?></p>
-                                </a>
-                            </div>
-
-                    <?php }
-                            }
-                        }
-
-
-                        // Display quiz after listing all the questions
-                        $quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '$id'");
-                        if (mysqli_num_rows($quizRes) > 0) {
-                            $quizData = mysqli_fetch_array($quizRes);
-                    ?>
-                    <li class="quizcuri questioncuri">
-                        <a href="quiz.php?id=<?= $id ?>&quizid=<?= $quizData['quizid'] ?>" class="ancquiz ancquestion text-info">
-                            <?= $quizData['quiz'] ?>
-                        </a>
-                    </li>
-                <?php } ?> -->
-
-<!-- ////////////////////old code -->
->>>>>>> 30970f9eab498a65e22faa30a9f4e3d92661256a
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-
             <?php
-$shownQuizzes = array();
-
+// Fetch all curriculum titles based on the given post_id
 $res = mysqli_query($con, "SELECT * FROM `curicullum_title` WHERE `post_id` = '$id'");
 if (mysqli_num_rows($res) > 0) {
     while ($data = mysqli_fetch_array($res)) {
-?>
-        <li class="questioncuri">
-            <?= $data['title'] ?>
-        </li>
-        <?php
-        $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = $data[id]");
+        // Display curriculum title.
+        echo '<h2>' . $data['title'] . '</h2>';
+
+        // Fetch and display related questions for the current curriculum title.
+        $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = {$data['id']}");
         while ($data2 = mysqli_fetch_array($cur1)) {
-        ?>
-            <div>
-                <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $data2['id'] ?>" class="ancquestion">
-                    <p class="curi"><?= $data2['question']; ?></p>
-                </a>
-            </div>
-        <?php
+            echo '<div>';
+            echo '<p class="question">' . $data2['question'] . '</p>';
+            echo '</div>';
         }
-        // Fetch all quizzes for this curriculum title and store them in $quizDataArray.
-        $quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '$id' AND `quizid` NOT IN ('" . implode("','", $shownQuizzes) . "')");
-        $quizDataArray = array();
-        while ($quizData = mysqli_fetch_array($quizRes)) {
-            $quizDataArray[] = $quizData;
-            $shownQuizzes[] = $quizData['quizid'];
+
+        // Remember unique quizzes related to the current curriculum title and curi_id, excluding "Quiz 3".
+       // Remember unique quizzes related to the current curriculum title and curi_id, excluding "Quiz 3".
+$uniqueQuizzes = array();
+$currentDay = "";
+
+// Fetch all quizzes related to the current curriculum title and curi_id.
+$quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '{$data['post_id']}'");
+while ($quizData = mysqli_fetch_array($quizRes)) {
+    // Check if the quiz is not "Quiz 3" and if it is not already added to the uniqueQuizzes array.
+    if ($quizData['quiz'] !== 'Quiz ' && !in_array($quizData['quiz'], $uniqueQuizzes)) {
+        // Add the quiz to the uniqueQuizzes array.
+        $uniqueQuizzes[] = $quizData['quiz'];
+
+        // Check if the current day has changed, and update the currentDay variable accordingly.
+        if (isset($quizData['day_column_name']) && $quizData['day_column_name'] !== $currentDay) {
+            $currentDay = $quizData['day_column_name'];
+            // Display the day title.
+            echo '<div>' . $currentDay . '</div>';
         }
-        // Check if there are quizzes related to the current curriculum title.
-        if (!empty($quizDataArray)) {
-        ?>
-            <!-- Display the quiz options after curriculum questions. -->
-            <li class="quizcuri questioncuri">
-                <a href="quiz.php?id=<?= $id ?>&quizid=<?= $quizDataArray[0]['quizid'] ?>" class="ancquiz ancquestion text-info">
-                    <?= $quizDataArray[0]['quiz'] ?>
-                </a>
-            </li>
-            <!-- You can display more quizzes if needed -->
-        <?php
-        }
+
+        // Display the quiz title.
+        echo '<div>';
+        echo '<p class="quiz">' . $quizData['quiz'] . '</p>';
+        echo '</div>';
+    }
+}
+
     }
 }
 ?>
 
 
-</div>
-                <?php include 'footer.php' ?>
 
-            </div>
-
-=======
-                <?php
-                $shownQuizzes = array();
-
-                $res = mysqli_query($con, "SELECT * FROM `curicullum_title` WHERE `post_id` = '$id'");
-                if (mysqli_num_rows($res) > 0) {
-                    while ($data = mysqli_fetch_array($res)) {
-                ?>
-                        <li class="questioncuri">
-                            <?= $data['title'] ?>
-                        </li>
-                        <?php
-                        $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = $data[id]");
-                        while ($data2 = mysqli_fetch_array($cur1)) {
-                        ?>
-                            <div>
-                                <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $data2['id'] ?>" class="ancquestion">
-                                    <p class="curi"><?= $data2['question']; ?></p>
-                                </a>
-                            </div>
-                        <?php
-                        } 
-                        $quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '$id' AND `quizid` NOT IN ('" . implode("','", $shownQuizzes) . "')");
-                        if (mysqli_num_rows($quizRes) > 0) {
-                            $quizData = mysqli_fetch_array($quizRes);
-                            $shownQuizzes[] = $quizData['quizid'];
-                        ?>
-                            <li class="quizcuri questioncuri">
-                                <a href="quiz.php?id=<?= $id ?>&quizid=<?= $quizData['quizid'] ?>" class="ancquiz ancquestion text-info">
-                                    <?= $quizData['quiz'] ?>
-                                </a>
-                            </li>
-                <?php
-                        }
-                    }
-                }
-                ?>
-
-            </div>
+        </div>
 
             <div class="col-md-10 mt-3">
                 <?php
@@ -186,11 +94,7 @@ if (mysqli_num_rows($res) > 0) {
                     $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum`")); ?>
 
                     <b><?= $cur1['question'] ?></b><br>
-                    <p><?= $cur1['answer'] ?></p>
-
-
-
-                <?php
+                    <p><?= $cur1['answer'] ?></p><?php
                 } else {
                     $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $_GET[cid]")); ?>
 
@@ -199,18 +103,10 @@ if (mysqli_num_rows($res) > 0) {
                     <p><?= $cur1['answer'] ?></p>
 
                 <?php    } ?>
-              
-
-            </div>
-            <?php include 'footer.php' ?>
-
->>>>>>> 30970f9eab498a65e22faa30a9f4e3d92661256a
-
-
-        </div>
-
+                </div>
+         </div> <?php include 'footer.php' ?>
     </div>
-
+    
 
 
 
