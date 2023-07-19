@@ -105,7 +105,7 @@ $id = $_GET['id'];
                             </div>
                         <?php
                         } 
-                        $quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '$id' AND `quizid` NOT IN ('" . implode("','", $shownQuizzes) . "')");
+                        $quizRes = mysqli_query($con, "SELECT * FROM `quiz` WHERE `quizid` = '$id' AND `id` NOT IN ('" . implode("','", $shownQuizzes) . "')");
                         if (mysqli_num_rows($quizRes) > 0) {
                             $quizData = mysqli_fetch_array($quizRes);
                             $shownQuizzes[] = $quizData['quizid'];
