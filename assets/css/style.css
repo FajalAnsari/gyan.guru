@@ -1,0 +1,545 @@
+/* ----------------------- */
+/* header css */
+.bg {
+  background-color: #006565;
+  /* #02292C,#006565,#5C7F83,#917131,#99562D */
+  height: 415px;
+  
+}
+.bggg{
+  position:fixed;
+  top: 0px;
+  z-index: 1;
+}
+.imgrescircle{
+  margin-top: 20px;
+  margin-left: 8%;
+}
+.headerres{
+  margin-top: -213px;
+}
+.searchboxbtn{
+  margin-left: -13%;
+  background-color: #917131 !important;
+  border: 1px solid #917131 !important;
+}
+.slidicon{
+  color: #917131;
+}
+.icondiv{
+  margin-right: 17%;
+  margin-top: -10%;
+  color: #5C7F83;
+ 
+}
+.searcha{
+  color: #917131;
+}
+.countdiv{
+  float: right;
+    background:  #02292C;
+    width: 90px;
+    height: 244px;
+    margin-top: -131px;
+    text-align: center;
+    line-height: 219px;
+    font-size: 40px;
+    color: #5C7F83;
+    z-index: 1;
+    position: relative;
+    
+}
+/* slidebar */
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2!important;
+  top: 0;
+  right: 0;
+  background-color: #5C7F83;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left 0.5s;
+  padding: 20px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {
+      padding-top: 15px;
+  }
+
+  .sidebar a {
+      font-size: 18px;
+  }
+}
+/* -------------------- */
+/* --------------signin Start*/
+
+/* ------------------------signin End */
+/* -------------------- */
+
+.footer {
+  background-color: #02292C;
+}
+.iconcolorfooter{
+  color: #bf925c;
+}
+.footertext{
+  color: #5C7F83;
+}
+/* --------------- */
+
+/* TOP COURSES Start */
+.seaside {
+  position: relative;
+  font-size: 40px;
+  font-weight: 600;
+  font-family: tahoma;
+  -webkit-text-stroke: 2px #006565;
+  -webkit-text-fill-color: transparent;
+}
+.colorchange{
+  color: #99562D!important;
+}
+.cardborder{
+  border: none !important;
+  /* border-right: 1px solid #006565 !important;
+  border-bottom: 1px solid #006565 !important; */
+  box-shadow: -5px -5px 6px rgb(0, 101, 101, 0.8);
+}
+.page {
+  float: right;
+  margin-top: -43px;
+  margin-right: 64px;
+}
+
+.bgi {
+  background-color: white !important;
+  border-right: 2px solid #02292C !important;
+  border-bottom: 2px solid #02292C !important;
+  color: #5C7F83!important;
+  padding: 2px !important;
+  margin-top: -30px;
+  margin-left: -15px;
+  font-weight: bold !important;
+  box-shadow: 4px 5px 5px rgb(0, 101, 101, 0.5);
+}
+
+.badge {
+  border-radius: 0px;
+  background-color: #917131;
+}
+.page2 {
+  display: none !important;
+}
+
+/* TOP COURSES End */
+
+/* EXPLORE EDUPRIX Start */
+.explorecontainer {
+  background-color: #5C7F83;
+  margin-top: 90px;
+}
+
+.exph1 {
+  -webkit-text-stroke: 1px #00b2ff;
+}
+
+.exprow {
+  background-color: #02292C;
+}
+
+.couresp {
+  color: #917131;
+}
+
+.ficon {
+  color: #917131;
+}
+
+.sall {
+  color:#917131;
+}
+
+/* EXPLORE EDUPRIX End */
+/* student------------- */
+.englandcolor{
+  color: #917131 !important;
+}
+.emilliecolor{
+  color:#02292C !important;
+}
+.arrowcolor{
+  border: 2px solid #02292C;
+  color: #02292C;
+}
+.imagesadhow{
+  box-shadow: -5px -5px rgb(0, 101, 101, 0.8);
+}
+/* student---------- */
+/* Blogpost Sart */
+.blogbtn {
+  background: #917131 !important;
+  /* color: #917131!important; */
+  border: none !important;
+}
+.fulla {
+  color: #bf925c;
+}
+.blogshadow {
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+.blogcard {
+  border: 1px solid #02292C !important;
+}
+/* Blogpost End*/
+
+/* ---------------- */
+.unknown {
+  background: #5C7F83;
+}
+.mathunknown {
+  color: #02292C;
+  font-weight: 800;
+}
+.unknownh4 {
+  color: #bf925c;
+}
+/* ----------- */
+/* ----------- */
+.subscribebtn {
+  color: #bf925c !important;
+  border: none !important;
+  width: 299px;
+  background-color: #02292C !important;
+}
+.inputemail {
+  width: 300px;
+}
+.backgroundform{
+  background-color: #5C7F83;
+}
+/* --------------- */
+/* -------------Crousel----------- */
+
+.bottomcrousel{
+  background-color: #006565;
+  width: 71%;
+  line-height: 27px;
+  float: right;
+  color: #917131;
+  padding-left: 17px;
+  padding: 10px;
+}
+.lmore{
+  background: none;
+  border: none;
+  color: white;
+  float:right;
+  margin-right: 17px;
+}
+.emph5{
+  color: #006565;
+}
+.empbold{
+  color: #02292C;
+  font-weight: 800;
+}
+/* -------------Crousel----------- */
+@media (min-width: 768px) {
+  .p-md-5 {
+    padding: 0px !important;
+  }
+}
+@media only screen and (min-width: 1022px) and (max-width: 1440px) {
+ 
+  .imgrescircle{
+    width: 283px;
+    margin-left: -71px;
+  }
+  .icondiv{
+    margin-right: 149px;
+    margin-top: -181px;
+   
+  }
+  .headerres{
+    width: 99%;
+  }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  
+  .formresponsive{
+    display: none !important;
+
+  }
+  .explorecontainer {
+    margin-top: 32px !important;
+  }
+  .page {
+    float: none !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+    margin-left: 43%;
+  }
+  .meetres {
+    margin-bottom: 0px !important;
+  }
+  .inputemail {
+    width: 271px !important;
+  }
+  .subscribebtn {
+    width: 269px !important;
+  }
+  /* .exph1 {
+    margin-left: 0px !important;
+  } */
+  .sall {
+    display: none;
+  }
+  .seaside {
+    text-align: center;
+  }
+  .respontopcoures{
+    padding-top: 38px !important;
+  }
+  .page {
+    display: none !important;
+  }
+  .page2 {
+    display: inline-block !important;
+    display: flex !important;
+    margin-left: 28%;
+  }
+  .page3 {
+    display: inline-block !important;
+    display: flex !important;
+    margin-left: 36%;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 820px) {
+  .iframeimage{
+    width: 300px;
+  }
+  .cinner{
+    margin-top: 65px;
+  }
+  .icondiv{
+    display: none;
+  }
+  .countdiv{
+    display: none;
+  }
+  .headerres{
+    margin-top: 0px;
+  }
+  .bg{
+    height: 65px;
+  }
+  .imgrescircle{
+    display: none;
+  }
+  .formsearch{
+    display: none;
+  }
+  .imgform {
+    text-align: center !important;
+    padding-top: 0px !important;
+    margin-bottom: -56px;
+  }
+  .textres {
+    text-align: center !important;
+    padding-top: 0px !important ;
+  }
+  .formcen {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  .rowabout{
+    display: block;
+  }
+}
+
+
+
+/* -------------------coursedetails */
+.coursetitleh1{
+  color: #02292C;
+}
+.colorancher{
+  color: #99562D !important;
+  font-weight: bold !important;
+}
+.navtabul{
+  border-bottom:1px solid #006565 !important;
+}
+.nav-tabs .nav-link.active{
+  background: #5C7F83 !important;
+  color: #02292C!important;
+  border-color: #006565 #006565#fff #006565 !important;
+}
+.nav-link.active:hover{
+  color: #02292C!important;
+  border-color: #006565 #006565#fff #006565 !important;
+}
+.imgresponsivediv{
+  padding-right: 0px!important;
+  padding-left: 0px !important;
+}
+.tableiconcolor{
+  color: #5C7F83 !important;
+}
+.reviewsicon{
+  color: #bf925c;
+}
+.reviewsword{
+  margin-left: 83px;
+  font-size: 15px;
+}
+/* ------------------sidebar */
+.btngetcourse{
+  background-color: #02292C!important;
+  color: #bf925c!important;
+  font-weight: bold !important;
+}
+.designdiv{
+  border-right: 1px solid #02292C;
+  border-bottom: 1px solid #02292C;
+  margin: 50px;
+}
+/* --------------sidebar */
+/* -------------------coursedetails */
+/* ---------------sidebarenrolledcourse---------- */
+
+.designsidebar{
+  width: 15% !important;
+  background-color: #5C7F83 !important;
+  margin-top: 91px;
+}
+.clorchange{
+  color: #02292C!important;
+  text-decoration: none;
+}
+/* ---------------sidebarenrolledcourse---------- */
+/* ---------------question answer */
+.curi{
+  background-color: #80808033 !important;
+  margin-top: 15px;
+  padding: 10px;
+ 
+}
+.ancquestion{
+  text-decoration: none;
+  color: black;
+}
+.questioncuri {
+  margin-top: 10px;
+  padding: 5px;
+  list-style:none!important;
+  font-weight: bold;
+  color: black;
+}
+.questioncuri:hover{
+  background-color: #80808033 !important;
+ 
+}
+/* about------------ */
+.rowabout{
+  margin-top: -38px;
+}
+.backimgs{
+  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/010/355/020/small_2x/layers-of-abstract-3d-background-overlapping-silver-glitter-with-realistic-dark-brick-wall-free-vector.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+opacity: 0.80;
+text-shadow:2px 2px 4px #000;
+border:2px solid black;
+border-radius:10px;
+box-shadow: 10px 10px 8px #888888;
+}
+.backimgs1{
+  background-image:  url('https://static.vecteezy.com/system/resources/thumbnails/010/355/020/small_2x/layers-of-abstract-3d-background-overlapping-silver-glitter-with-realistic-dark-brick-wall-free-vector.jpg');
+background-repeat: no-repeat;
+  background-size: cover;
+text-shadow:2px 2px 4px #000;
+border:2px solid black;
+opacity: 0.80;
+border-radius:10px;
+box-shadow: 10px 10px 8px #888888;
+}
+
+
+.backimgs2{
+background-image: url('https://cdn.mos.cms.futurecdn.net/hHzuwpF7nsYKsAGqdd2za5-1200-80.jpeg');
+background-repeat: no-repeat;
+background-size: cover;
+text-shadow:2px 2px 4px #000;
+border:2px solid black;
+opacity: 0.80;
+border-radius:10px;
+box-shadow: 10px 10px 8px #888888;
+padding-bottom:73px;
+}
+/* designcontact---------------------- */
+.iframeimage{
+  border:1px solid gray;
+}
+.designcontact{
+  box-shadow: 0px 0px 8px 5px #dee2e6;
+  border-radius: 10px;
+}
+.iconcolor{
+ color: #99562D;
+}.hedingcolor{
+  color: #006565;
+}
+.inputcontact{
+  border: none !important;
+  border-bottom: 3px solid black !important;
+  padding: 13px !important;
+}
+.col4degisn{
+  text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #888888;
+    box-sizing: border-box;
+}
+.col8design{
+  padding-top: 30px !important;
+  padding-left: 120px !important;
+  padding-right: 120px !important;
+  background-color: #5C7F83;
+}
+/* quiz-------------------- */
+#page-wrap{
+  margin-top: 100px;
+  margin-left: 40px;
+}
