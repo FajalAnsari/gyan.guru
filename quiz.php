@@ -1,5 +1,6 @@
 
 <?php
+session_start();
 // Assuming you have already established a database connection
 $connection =mysqli_connect("localhost",  "root", "", "eduprix");
 // Retrieve quiz questions and options from the database
