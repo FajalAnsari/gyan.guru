@@ -62,6 +62,12 @@
                 <i class="icon-graduation menu-icon"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="quiz.php">
+                <span class="menu-title">Quiz</span>
+                <i class="icon-graduation menu-icon"></i>
+            </a>
+        </li>
 
        <!--  <li class="nav-item">
             <a class="nav-link" href="users">
