@@ -216,7 +216,7 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Finance</b>
+					<button class="text-black bg-none">Finance</button>
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
