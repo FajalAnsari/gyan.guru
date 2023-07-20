@@ -6,9 +6,9 @@
                     <a class="navbar-brand" href="index.php"><img src="./assets/imgs/Logo (3).png" /></a>
                 </div>
                 <div class="mt-3 formsearch">
-                    <form class="d-flex">
+                    <form class="d-flex" method="Get">
                         <span class="searcha fw-bold">Search Anything</span>
-                        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search" value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
                         <button class="btn btn-info rounded-circle searchboxbtn" type="submit"><i class="fa-solid fa-search"></i></button>
                     </form>
                 </div>
