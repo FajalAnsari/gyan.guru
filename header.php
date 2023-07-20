@@ -8,7 +8,7 @@
                 <div class="mt-3 formsearch">
                     <form class="d-flex" method="Get" action="allcourses.php">
                         <span class="searcha fw-bold">Search Anything</span>
-                        <input class="form-control me-2 rounded-pill"autocomplete="off" type="search" name="search" placeholder="Search" aria-label="Search" value="<?php if(isset($_GET['search'])){echo $_GET['search'];}?>">
+                        <input class="form-control me-2 rounded-pill"autocomplete="off" type="search" name="search" placeholder="Search" aria-label="Search" value="<?php if(isset($_GET['search']))?>">
                         <button class="btn btn-info rounded-circle searchboxbtn"  type="submit"><i class="fa-solid fa-search"></i></button>
                     </form>
                 </div>

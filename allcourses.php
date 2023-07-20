@@ -96,7 +96,7 @@
 if (isset($_GET['search'])) {
     $filtervalues = $_GET['search'];
     $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-    $query = "SELECT * FROM `posts` WHERE title LIKE ?";
+    $query = "SELECT * FROM `posts` WHERE category LIKE ?";
 
     // PREPARE STATEMENT
     $stmt = $con->prepare($query);
