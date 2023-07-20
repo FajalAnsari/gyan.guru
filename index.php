@@ -138,13 +138,7 @@ if (!isset($_SESSION['email'])) {
 		</span>
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
 			<?php
-			$query = "SELECT * FROM `posts`;";
-
-			// FETCHING DATA FROM DATABASE
-			$result = $con->query($query);
-
-			if ($result->num_rows > 0) {
-				// OUTPUT DATA OF EACH ROW
+			$query = "SELECT * FROM `posts`;";$result = $con->query($query);if ($result->num_rows > 0) {
 				while ($row = $result->fetch_assoc()) {
 
 			?>
@@ -169,15 +163,7 @@ if (!isset($_SESSION['email'])) {
 
 			<?php
 				}
-			}
-			?>
-
-
-
-
-
-
-
+			} ?>
 		</div>
 		<br>
 		<div>
@@ -230,28 +216,28 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Data Science</b>
+					<b class="text-white">Finance</b>
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
-					<b class="text-white">Business & Management</b>
+					<b class="text-white">Investment</b>
 					<p class="couresp">67 Courses</p>
 				</div>
 			</div>
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-language mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Language</b>
+					<b class="text-white">Marketing</b>
 					<p class="couresp">85 Courses</p>
 				</div>
 			</div>
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-user mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Information Technology</b>
+					<b class="text-white">Devlopement</b>
 					<p class="couresp">98 Courses</p>
 				</div>
 			</div>
@@ -307,6 +293,37 @@ if (!isset($_SESSION['email'])) {
 
 		<!-- <pre class="text-end sall pb-5 pe-5 colorchange">See All</pre> -->
 	</div>
+	
+	<div class="container">
+		<div class="seaside mt-5 text-center">ALL COURSES</div>
+		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
+		<?php
+			$query = "SELECT * FROM `posts`;";$result = $con->query($query);if ($result->num_rows > 0) {
+				while ($row = $result->fetch_assoc()) {
+
+			?>
+			<div class="col blogshadow">
+				<div class="card blogcard">
+					<img src="<?php echo 'assets/imgs/' . $row['image']; ?>" class="card-img-top mt-2 p-4" alt="...">
+					<div class="card-body">
+						<a href="coursedetails.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-primary blogbtn">
+							View All
+						</button></a>
+						<h5 class="card-title emilliecolor"><?php echo $row['title'] ?></h5>
+						<p class="card-text footertext">Full Article</p>
+					</div>
+				</div>
+			</div>
+		
+			<?php
+				}
+			} ?>
+		</div>
+		<div class="text-center mt-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Course</button></a></div>
+	</div>
+	
+	
+	
 	<!-- /* EXPLORE EDUPRIX End */ -->
 
 
