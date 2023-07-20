@@ -9,10 +9,18 @@ if (isset($_GET['id'])) {
     $quizId = $_GET['id'];
 
     // Retrieve quiz questions and options from the database for the specified quiz ID
-    $query = "SELECT * FROM quiz 
-              INNER JOIN quiz_questions ON quiz.quizid = quiz_questions.quizid
-              INNER JOIN quiz_options ON quiz_questions.question_id = quiz_options.question_id
-              WHERE quiz.quizid = '$quizId'";
+    $query = "SELECT 
+    qt.id AS quiz_id,
+    qt.quizid AS quiz_group_id,
+    qt.quiz AS quiz_name,
+    qst.question_id,
+    qst.question_text
+  FROM
+    quiz AS qt
+  JOIN
+    quiz_questions AS qst
+  ON
+    qt.quizid = qst.question_id";
 
     $result = mysqli_query($connection, $query);
 
@@ -21,20 +29,25 @@ if (isset($_GET['id'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         $questionId = $row['question_id'];
         $questionText = $row['question_text'];
-        $optionId = $row['option_id'];
-        $optionText = $row['option_text'];
 
-        // Add options to the corresponding question
-        if (!isset($questions[$questionId])) {
-            $questions[$questionId] = array(
-                'question_text' => $questionText,
-                'options' => array()
+        // Fetch options for the current question from the database
+        $options_query = "SELECT option_id, option_text, is_correct FROM quiz_options WHERE question_id =  $questionId";
+        $options_result = mysqli_query($connection, $options_query);
+
+        // Store options in an array for the current question
+        $options = array();
+        while ($option_row = mysqli_fetch_assoc($options_result)) {
+            $options[] = array(
+                'option_id' => $option_row['option_id'],
+                'option_text' => $option_row['option_text'],
+                'is_correct' => $option_row['is_correct']
             );
         }
 
-        $questions[$questionId]['options'][] = array(
-            'option_id' => $optionId,
-            'option_text' => $optionText
+        // Add the question and its options to the $questions array
+        $questions[$questionId] = array(
+            'question_text' => $questionText,
+            'options' => $options
         );
     }
 } else {
@@ -43,6 +56,7 @@ if (isset($_GET['id'])) {
     echo "Quiz ID not provided in the URL.";
 }
 ?>
+
 
 
 
