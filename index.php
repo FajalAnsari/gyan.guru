@@ -304,7 +304,7 @@ if (!isset($_SESSION['email'])) {
 			?>
 			<div class="col blogshadow">
 				<div class="card blogcard">
-					<img src="<?php echo 'assets/imgs/' . $row['image']; ?>" class="card-img-top mt-2 p-4" alt="...">
+					<img src="<?php echo 'assets/imgs/' . $row['image']; ?>" class="card-img-top mt-2 p-4" alt="..." style="height: 245px;">
 					<div class="card-body">
 						<a href="coursedetails.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-primary blogbtn">
 							View All
@@ -319,7 +319,7 @@ if (!isset($_SESSION['email'])) {
 				}
 			} ?>
 		</div>
-		<div class="text-center mt-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Course</button></a></div>
+		<div class="text-center mt-5 mb-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Courses</button></a></div>
 	</div>
 	
 	
@@ -361,6 +361,7 @@ if (!isset($_SESSION['email'])) {
 		</section>
 
 	</div>
+	
 	<!-- /* Student Review End */ -->
 	<!-- --------------------------- -->
 	<div class="container-fluid unknown">

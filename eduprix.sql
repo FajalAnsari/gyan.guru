@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2023 at 01:09 PM
+-- Generation Time: Jul 20, 2023 at 01:17 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.0.28
 
@@ -99,7 +99,18 @@ INSERT INTO `curicullum` (`id`, `curi_id`, `question`, `answer`) VALUES
 (10, 8, 'CSS Flexbox.', 'This is css flexbox.'),
 (11, 10, 'PHP Function?', 'This is php function.'),
 (12, 11, 'Php array', 'This is php array'),
-(14, 9, 'CSS background', 'This is css background.');
+(14, 9, 'CSS background', 'This is css background.'),
+(15, 12, 'What is investment advance?', 'This is envestment advance.'),
+(16, 12, 'What is investment?', 'This is investment.'),
+(17, 13, 'What is investment advance 2?', 'this is investment advance 2.'),
+(18, 14, 'What is advance finance 1?', 'This is advance finance.'),
+(19, 15, 'What is finance advance 2?', 'This is finance advance 2.'),
+(20, 16, 'What is advance marketing?', 'This is advance marketing.'),
+(21, 17, 'What is marketing advance 2?', 'This is marketing advance2.'),
+(22, 18, 'What is marketing1?', 'This is marketing1.'),
+(23, 19, 'What is Marketing2?', 'This is Marketing2.'),
+(24, 20, 'What is investment1?', 'This is investment.'),
+(25, 21, 'What is investment2?', 'this is invesment2.');
 
 -- --------------------------------------------------------
 
@@ -125,7 +136,17 @@ INSERT INTO `curicullum_title` (`id`, `post_id`, `title`) VALUES
 (8, 3, 'CSS FIRST DAY'),
 (9, 3, 'CSS SECOUND DAY'),
 (10, 4, 'PHP FIRST DAY'),
-(11, 4, 'PHP SECOUND DAY');
+(11, 4, 'PHP SECOUND DAY'),
+(12, 12, 'INVESTadvace1'),
+(13, 12, 'INVESTMENT advance2'),
+(14, 11, 'FIENANCEADVANCE1'),
+(15, 11, 'FINANCE advance2'),
+(16, 10, 'MARKETINGADVANCE1'),
+(17, 10, 'MARKETING ADVANCE2'),
+(18, 8, 'MARKETING1'),
+(19, 8, 'MARKETING2'),
+(20, 7, 'INVESTMENT1'),
+(21, 7, 'INVESTMENT2');
 
 -- --------------------------------------------------------
 
@@ -141,18 +162,24 @@ CREATE TABLE `posts` (
   `tags` varchar(100) DEFAULT NULL,
   `desc` text DEFAULT NULL,
   `image` varchar(500) DEFAULT NULL,
-  `post_date` varchar(15) DEFAULT NULL
+  `post_date` varchar(15) DEFAULT NULL,
+  `category` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `posts`
 --
 
-INSERT INTO `posts` (`id`, `cat_id`, `title`, `lebal`, `tags`, `desc`, `image`, `post_date`) VALUES
-(1, 1, 'HTML', 'Biggner', 'Table,Span, Division,List Item, Ordered List, Unordered List, Image,Anchor,Paragraph,Heading', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023'),
-(2, 2, 'Finance', 'Begginner', 'Financial Decisions,Financial Analysis,Investments,Budgeting,Risk Management,Personal Finance', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', NULL),
-(3, 3, 'CSS', 'Advanced', 'fedwfde', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023'),
-(4, 4, 'PHP', 'Biggner', 'Stock Market,Diversification,Return on Investment (ROI),Asset Allocation,Portfolio Management,Invest', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023');
+INSERT INTO `posts` (`id`, `cat_id`, `title`, `lebal`, `tags`, `desc`, `image`, `post_date`, `category`) VALUES
+(1, 1, 'HTML', 'Biggner', 'Table,Span, Division,List Item, Ordered List, Unordered List, Image,Anchor,Paragraph,Heading', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023', 'development'),
+(2, 2, 'Finance', 'Begginner', 'Financial Decisions,Financial Analysis,Investments,Budgeting,Risk Management,Personal Finance', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', NULL, ''),
+(3, 3, 'CSS', 'Advanced', 'fedwfde', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023', 'development'),
+(4, 4, 'PHP', 'Biggner', 'Stock Market,Diversification,Return on Investment (ROI),Asset Allocation,Portfolio Management,Invest', '\nFinance is a field that deals with the management of money, investments, and other financial assets. It encompasses a wide range of activities, including banking, investing, budgeting, saving, and lending. Finance plays a crucial role in individuals\' lives, businesses of all sizes, and the overall economy.<p><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\"><strong>HTML</strong> (Hypertext Markup Language) is the standard markup language used for creating web pages and structuring their content. It pp><span style=\"background-color:rgb(247,247,248);color:rgb(55,65,81);\">1.', 'commercial.jpg', '07 Jul 2023', ''),
+(7, 3, 'Investment', 'Biggner', 'Table,Span, Division,List Item, Ordered List, Unordered List, Image,Anchor,Paragraph,Heading', '<p>The question ‘what is investment’ is mostly followed by understanding your investment objectives and identifying where to invest. Keeping aside investments in real estate and assets like jewellery and all, when it comes to different instruments, another aspect of understanding ‘what is investment meaning’ is to know about different types of investments. The first refers to equity investments, and the second category includes debt instruments. If your investment objectives match, equity investments can offer greater returns and carry relatively higher risk. While debt instruments are less risky, but offer relatively low returns.</p><p>Further, what is investment meaning can also be understood from the perspective of how they are acquired.</p><p>Following are different types of investments in India:</p><h3><span style=\"color:var(--color-text-primary);\">1. Stocks</span></h3><p><span style=\"color:var(--color-text-primary);\">This includes shares of ownership of any company and helps you earn dividends in return.</span></p><h3><span style=\"color:var(--color-text-primary);\">2. Bonds</span></h3><p><span style=\"color:var(--color-text-primary);\">Wondering what is investment meaning in terms of bonds? It means lending your money to an institution or government, for which you receive fixed interest at regular intervals and also the face value upon maturity.</span></p>', '360_F_152341497_kpDnYTNUFg6Tk2zeaQG9gsnBBbLbQgl0.jpg', '20 Jul 2023', ''),
+(8, 4, 'Marketing', 'Biggner', 'Stock Market,Diversification,Return on Investment (ROI),Asset Allocation,Portfolio Management,Invest', '<p>This is Marketing.</p>', 'Scope-of-Marketing.png', '20 Jul 2023', ''),
+(10, 4, 'Marketing Advance', 'Biggner', 'Stock Market,Diversification,Return on Investment (ROI),Asset Allocation,Portfolio Management,Invest', '<p>This is advance marketing.</p>', 'Scope-of-Marketing.png', '20 Jul 2023', ''),
+(11, 1, 'FinanceAdvance', 'Biggner', 'Financial Decisions,Financial Advice,Financial Advice,Financial Analysis,Retirement Planning,Saving,', '<p>This is a Finance.</p>', '360_F_152341497_kpDnYTNUFg6Tk2zeaQG9gsnBBbLbQgl0.jpg', '20 Jul 2023', ''),
+(12, 3, 'Investment Advance', 'Biggner', 'Financial Decisions,Financial Advice,Financial Advice,Financial Analysis,Retirement Planning,Saving,', '<p>This is investment Advance</p>', '360_F_152341497_kpDnYTNUFg6Tk2zeaQG9gsnBBbLbQgl0.jpg', '20 Jul 2023', '');
 
 -- --------------------------------------------------------
 
@@ -388,19 +415,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `curicullum`
 --
 ALTER TABLE `curicullum`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `curicullum_title`
 --
 ALTER TABLE `curicullum_title`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `quiz`
