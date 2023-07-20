@@ -196,8 +196,8 @@
   color:#02292C !important;
 }
 .arrowcolor{
-  border: 2px solid #02292C;
-  color: #02292C;
+  border: 2px solid #02292C !important;
+  color: #02292C !important;
 }
 .imagesadhow{
   box-shadow: -5px -5px rgb(0, 101, 101, 0.8);
