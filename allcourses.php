@@ -87,19 +87,11 @@ include 'action/config.php';
 
     </div>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
-<<<<<<< HEAD
     <?php
 if (isset($_GET['search'])) {
     $filtervalues = $_GET['search'];
     $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
     $query = "SELECT * FROM `posts` WHERE category LIKE ?";
-=======
-      <?php
-      if (isset($_GET['search'])) {
-        $filtervalues = $_GET['search'];
-        $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-        $query = "SELECT * FROM `posts` WHERE category LIKE ?";
->>>>>>> 0c13f62b30da98937734adb0257f67d9f4ea30a2
 
         // PREPARE STATEMENT
         $stmt = $con->prepare($query);
