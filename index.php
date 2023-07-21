@@ -216,16 +216,21 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
-					<form method="post" action="">
-					<input class=" exprow text-white text-center fw-bold border-0" name= "submit" value="<?php if(isset($_POST['']))?>" type="submit">
-		            </form>
+					<!-- A form containing the button -->
+<form action="" method="post">
+  <button name="myButton" value="finance">Click me!</button>
+</form>
+
+
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
-					<b class="text-white">Investment</b>
+					<form action="" method="post">
+  <button name="myButton" value="investement">Click me!</button>
+</form>
 					<p class="couresp">67 Courses</p>
 				</div>
 			</div>
@@ -239,7 +244,9 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-user mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Devlopement</b>
+					<form action="" method="post">
+  <button name="myButton" value="devlopment">Click me!</button>
+</form>
 					<p class="couresp">98 Courses</p>
 				</div>
 			</div>
@@ -301,10 +308,11 @@ if (!isset($_SESSION['email'])) {
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
 		<?php
 		
-if (isset($_POST['submit'])) {
-    $filtervalues = $_POST['submit'];
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			if (isset($_POST['myButton'])){
+    $filtervalues = $_POST['myButton'];
 	$sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-	echo $sanitizedFilter;
+	
     $query = "SELECT * FROM `posts` WHERE category LIKE ?";
 
         // PREPARE STATEMENT
@@ -351,6 +359,7 @@ if (isset($_POST['submit'])) {
         } else {
           echo "Error in the query.";
         }
+	}
       }
       ?>
 
