@@ -20,7 +20,7 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
-    <h1 class="text-center">Coures</h1>
+    <?php echo "<h1>Results for: " . htmlspecialchars($filtervalues) . "</h1>"; // Display the search term?>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
      
         <?php
@@ -42,7 +42,7 @@
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-
+                    
 
                     // OUTPUT DATA OF EACH ROW
                     while ($row = $result->fetch_assoc()) {
@@ -68,7 +68,7 @@
         <?php
                     }
                 } else {
-                    echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
+                    echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
                 }
             } else {
                 echo "Error in the query.";
