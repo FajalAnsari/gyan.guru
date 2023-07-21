@@ -333,7 +333,7 @@ if (!isset($_SESSION['email'])) {
 						$result = $stmt->get_result();
 
 						$numCourses = $result->num_rows;
-						
+						if ($numCourses > 0) {
 							
 							
 
@@ -368,7 +368,7 @@ if (!isset($_SESSION['email'])) {
 						echo "Error in the query.";
 					}
 				}
-			
+			}
 			echo  $numCourses;
 			?>
 

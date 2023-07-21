@@ -20,8 +20,12 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
+<<<<<<< HEAD
     
+=======
+>>>>>>> 23f595a164b2137242a07ae5101045690e62600d
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
+  
      
     <?php
         if (isset($_GET['search'])) {
@@ -42,11 +46,13 @@
                 $result = $stmt->get_result();
 
                 if ($result->num_rows > 0) {
-                    
+                    echo "<h1 style='background-color: #02292C;padding-top: 96px;text-align: center;color: #bf925c;'>Courses of: " . htmlspecialchars($filtervalues) . "</h1>";
+
+                    // echo "<h1>Courses of: " . htmlspecialchars($filtervalues) . "</h1>"; // Display the search term
 
                     // OUTPUT DATA OF EACH ROW
                     while ($row = $result->fetch_assoc()) {
-        ?>
+        ?> 
                         <div class="col">
                             <div class="card cardborder">
                                 <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
@@ -64,8 +70,11 @@
                                     <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
                                 </div>
                             </div>
+                      
                         </div>
+                     
         <?php
+           
                     }
                 } else {
                     echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
@@ -75,8 +84,11 @@
             }
         }
         ?>
-</div>
-</div>
+           </div>
+
+
+   
+    </div>
 
 
     <?php include 'footer.php' ?>
