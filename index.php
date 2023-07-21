@@ -233,7 +233,7 @@ if (!isset($_SESSION['email'])) {
 					<form action="" method="post">
 						<button name="myButton" value="investment" style="background:none; color:white;">Investment</button>
 					</form>
-					<p class="couresp">67 Courses</p>
+					<p class="text-white"><?php echo $numCourses . ($numCourses > 1 ? ' Courses' : ' Course') . ' Found'; ?></p>
 				</div>
 			</div>
 			<div class="col">
@@ -331,7 +331,10 @@ if (!isset($_SESSION['email'])) {
 						// GET RESULT
 						$result = $stmt->get_result();
 
-						if ($result->num_rows > 0) {
+						$numCourses = $result->num_rows;
+						if ($numCourses > 0) {
+
+
 
 
 							// OUTPUT DATA OF EACH ROW
