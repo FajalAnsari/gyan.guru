@@ -216,14 +216,21 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
-					<button class="text-black bg-none">Finance</button>
+					<!-- A form containing the button -->
+<form action="" method="post">
+  <button name="myButton" value="finance">Click me!</button>
+</form>
+
+
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
-					<b class="text-white">Investment</b>
+					<form action="" method="post">
+  <button name="myButton" value="investement">Click me!</button>
+</form>
 					<p class="couresp">67 Courses</p>
 				</div>
 			</div>
@@ -237,7 +244,9 @@ if (!isset($_SESSION['email'])) {
 			<div class="col">
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-user mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Devlopement</b>
+					<form action="" method="post">
+  <button name="myButton" value="devlopment">Click me!</button>
+</form>
 					<p class="couresp">98 Courses</p>
 				</div>
 			</div>
@@ -298,26 +307,62 @@ if (!isset($_SESSION['email'])) {
 		<div class="seaside mt-5 text-center">ALL COURSES</div>
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
 		<?php
-			$query = "SELECT * FROM `posts`;";$result = $con->query($query);if ($result->num_rows > 0) {
-				while ($row = $result->fetch_assoc()) {
-
-			?>
-			<div class="col blogshadow">
-				<div class="card blogcard">
-					<img src="<?php echo 'assets/imgs/' . $row['image']; ?>" class="card-img-top mt-2 p-4" alt="..." style="height: 245px;">
-					<div class="card-body">
-						<a href="coursedetails.php?id=<?php echo $row['id']; ?>"><button type="button" class="btn btn-primary blogbtn">
-							View All
-						</button></a>
-						<h5 class="card-title emilliecolor"><?php echo $row['title'] ?></h5>
-						<p class="card-text footertext">Full Article</p>
-					</div>
-				</div>
-			</div>
 		
-			<?php
-				}
-			} ?>
+		if ($_SERVER["REQUEST_METHOD"] === "POST") {
+			if (isset($_POST['myButton'])){
+    $filtervalues = $_POST['myButton'];
+	$sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
+	
+    $query = "SELECT * FROM `posts` WHERE category LIKE ?";
+
+        // PREPARE STATEMENT
+        $stmt = $con->prepare($query);
+        if ($stmt) {
+          // BIND PARAMETER
+          $stmt->bind_param("s", $sanitizedFilter);
+
+          // EXECUTE QUERY
+          $stmt->execute();
+
+          // GET RESULT
+          $result = $stmt->get_result();
+
+          if ($result->num_rows > 0) {
+
+
+            // OUTPUT DATA OF EACH ROW
+            while ($row = $result->fetch_assoc()) {
+      ?>
+              <div class="col">
+                <div class="card cardborder">
+                  <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
+                  <div class="card-body">
+                    <a href="coursedetails.php?id=<?php echo $row['id']; ?>">
+                      <button type="button" class="btn btn-primary position-relative bgi">
+                        VIEW COURSE
+                        <span class="position-absolute top-100 start-100 translate-middle badge">
+                          Free
+                          <span class="visually-hidden">unread messages</span>
+                        </span>
+                      </button>
+                    </a>
+                    <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                    <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
+                  </div>
+                </div>
+              </div>
+      <?php
+            }
+          } else {
+            echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
+          }
+        } else {
+          echo "Error in the query.";
+        }
+	}
+      }
+      ?>
+
 		</div>
 		<div class="text-center mt-5 mb-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Courses</button></a></div>
 	</div>
