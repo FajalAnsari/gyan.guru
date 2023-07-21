@@ -222,18 +222,11 @@ if (!isset($_SESSION['email'])) {
 					<form action="" method="post">
 						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
 					</form>
-
+<h1>Urmila</h1>
 
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
-			
-			
-			
-			
-			
-			
-			
 			<div>
 				<br>
 				<nav aria-label="Page navigation example">
