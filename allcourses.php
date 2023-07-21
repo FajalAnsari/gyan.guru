@@ -87,58 +87,7 @@ include 'action/config.php';
 
     </div>
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-3">
-    <?php
-if (isset($_GET['search'])) {
-    $filtervalues = $_GET['search'];
-    $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-    $query = "SELECT * FROM `posts` WHERE category LIKE ?";
-
-        // PREPARE STATEMENT
-        $stmt = $con->prepare($query);
-        if ($stmt) {
-          // BIND PARAMETER
-          $stmt->bind_param("s", $sanitizedFilter);
-
-          // EXECUTE QUERY
-          $stmt->execute();
-
-          // GET RESULT
-          $result = $stmt->get_result();
-
-          if ($result->num_rows > 0) {
-
-
-            // OUTPUT DATA OF EACH ROW
-            while ($row = $result->fetch_assoc()) {
-      ?>
-              <div class="col">
-                <div class="card cardborder">
-                  <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
-                  <div class="card-body">
-                    <a href="coursedetails.php?id=<?php echo $row['id']; ?>">
-                      <button type="button" class="btn btn-primary position-relative bgi">
-                        VIEW COURSE
-                        <span class="position-absolute top-100 start-100 translate-middle badge">
-                          Free
-                          <span class="visually-hidden">unread messages</span>
-                        </span>
-                      </button>
-                    </a>
-                    <h5 class="card-title"><?php echo $row['title'] ?></h5>
-                    <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
-                  </div>
-                </div>
-              </div>
-      <?php
-            }
-          } else {
-            echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
-          }
-        } else {
-          echo "Error in the query.";
-        }
-      }
-      ?>
+    
       
     </div>
     <br>
