@@ -361,7 +361,7 @@ if (!isset($_SESSION['email'])) {
 			<?php
 							}
 						} else {
-							echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
+							echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
 						}
 					} else {
 						echo "Error in the query.";

@@ -20,69 +20,62 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
+ 
+ <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
     <?php
-    "SELECT * FROM `posts` WHERE category LIKE ?";
+    if (isset($_GET['search'])) {
+        $filtervalues = $_GET['search'];
+        $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
+        $query = "SELECT * FROM `posts` WHERE category LIKE ?";
 
-    echo "<h2>No results found for: $filtervalues</h2>"?>;
-    <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
-     
-        <?php
-        if (isset($_GET['search'])) {
-            $filtervalues = $_GET['search'];
-            $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-            $query = "SELECT * FROM `posts` WHERE category LIKE ?";
+        // PREPARE STATEMENT
+        $stmt = $con->prepare($query);
+        if ($stmt) {
+            // BIND PARAMETER
+            $stmt->bind_param("s", $sanitizedFilter);
 
-            // PREPARE STATEMENT
-            $stmt = $con->prepare($query);
-            if ($stmt) {
-                // BIND PARAMETER
-                $stmt->bind_param("s", $sanitizedFilter);
+            // EXECUTE QUERY
+            $stmt->execute();
 
-                // EXECUTE QUERY
-                $stmt->execute();
+            // GET RESULT
+            $result = $stmt->get_result();
 
-                // GET RESULT
-                $result = $stmt->get_result();
+            if ($result->num_rows > 0) {
+                echo "<h1>Results for: " . htmlspecialchars($filtervalues) . "</h1>"; // Display the search term
 
-                if ($result->num_rows > 0) {
-
-
-                    // OUTPUT DATA OF EACH ROW
-                    while ($row = $result->fetch_assoc()) {
-        ?>             
-                        <div class="row">
-                            <div class="card cardborder">
-                                <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
-                                <div class="card-body">
-                                    <a href="coursedetails.php?id=<?php echo $row['id']; ?>">
-                                        <button type="button" class="btn btn-primary position-relative bgi">
-                                            VIEW COURSE
-                                            <span class="position-absolute top-100 start-100 translate-middle badge">
-                                                Free
-                                                <span class="visually-hidden">unread messages</span>
-                                            </span>
-                                        </button>
-                                    </a>
-                                    <h5 class="card-title"><?php echo $row['title'] ?></h5>
-                                    <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
-                                </div>
+                // OUTPUT DATA OF EACH ROW
+                while ($row = $result->fetch_assoc()) {
+    ?>             
+                    <div class="row">
+                        <div class="card cardborder">
+                            <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
+                            <div class="card-body">
+                                <a href="coursedetails.php?id=<?php echo $row['id']; ?>">
+                                    <button type="button" class="btn btn-primary position-relative bgi">
+                                        VIEW COURSE
+                                        <span class="position-absolute top-100 start-100 translate-middle badge">
+                                            Free
+                                            <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </button>
+                                </a>
+                                <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                                <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
                             </div>
                         </div>
-                    
-        <?php
-                    }
-                } else {
-                    echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
+                    </div>
+    <?php
                 }
             } else {
-                echo "Error in the query.";
+                echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
             }
+        } else {
+            echo "Error in the query.";
         }
-        ?>
-
-
-    </div>
-    </div>
+    }
+    ?>
+</div>
+</div>
 
 
     <?php include 'footer.php' ?>
