@@ -20,6 +20,7 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
+<<<<<<< HEAD
  
  <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
     <?php
@@ -27,6 +28,16 @@
         $filtervalues = $_GET['search'];
         $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
         $query = "SELECT * FROM `posts` WHERE category LIKE ?";
+=======
+    <?php echo "<h1>Results for: " . htmlspecialchars($filtervalues) . "</h1>"; // Display the search term?>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
+     
+        <?php
+        if (isset($_GET['search'])) {
+            $filtervalues = $_GET['search'];
+            $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
+            $query = "SELECT * FROM `posts` WHERE category LIKE ?";
+>>>>>>> 6428cd5de0293a91bf40ca598bc5b52e0a89c1ab
 
         // PREPARE STATEMENT
         $stmt = $con->prepare($query);
@@ -40,6 +51,7 @@
             // GET RESULT
             $result = $stmt->get_result();
 
+<<<<<<< HEAD
             if ($result->num_rows > 0) {
                 echo "<h1>Results for: " . htmlspecialchars($filtervalues) . "</h1>"; // Display the search term
 
@@ -65,6 +77,36 @@
                         </div>
                     </div>
     <?php
+=======
+                if ($result->num_rows > 0) {
+                    
+
+                    // OUTPUT DATA OF EACH ROW
+                    while ($row = $result->fetch_assoc()) {
+        ?>
+                        <div class="col">
+                            <div class="card cardborder">
+                                <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
+                                <div class="card-body">
+                                    <a href="coursedetails.php?id=<?php echo $row['id']; ?>">
+                                        <button type="button" class="btn btn-primary position-relative bgi">
+                                            VIEW COURSE
+                                            <span class="position-absolute top-100 start-100 translate-middle badge">
+                                                Free
+                                                <span class="visually-hidden">unread messages</span>
+                                            </span>
+                                        </button>
+                                    </a>
+                                    <h5 class="card-title"><?php echo $row['title'] ?></h5>
+                                    <!-- <p class="card-text"><?php echo $row['desc'] ?></p> -->
+                                </div>
+                            </div>
+                        </div>
+        <?php
+                    }
+                } else {
+                    echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
+>>>>>>> 6428cd5de0293a91bf40ca598bc5b52e0a89c1ab
                 }
             } else {
                 echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term

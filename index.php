@@ -220,7 +220,7 @@ if (!isset($_SESSION['email'])) {
 					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
 					<!-- A form containing the button -->
 					<form action="" method="post">
-						<button name="myButton" value="finance" style="background:none; color:white;">Finance</button>
+						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
 					</form>
 
 
@@ -231,7 +231,7 @@ if (!isset($_SESSION['email'])) {
 				<div class="p-3  exprow text-center">
 					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
 					<form action="" method="post">
-						<button name="myButton" value="investment" style="background:none; color:white;">Investment</button>
+						<button name="myButton" value="investment" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Investment</button>
 					</form>
 					<p class="text-white"><?php echo $numCourses . ($numCourses > 1 ? ' Courses' : ' Course') . ' Found'; ?></p>
 				</div>
@@ -240,7 +240,7 @@ if (!isset($_SESSION['email'])) {
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-language mx-3 fs-2 ficon"></i></div>
 					<form action="" method="post">
-						<button name="myButton" value="Marketing" style="background:none; color:white;">Marketing</button>
+						<button name="myButton" value="Marketing" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Marketing</button>
 					</form>
 					<p class="couresp">85 Courses</p>
 				</div>
@@ -249,7 +249,7 @@ if (!isset($_SESSION['email'])) {
 				<div class="p-3  exprow text-center">
 					<div><i class="fa-solid fa-user mx-3 fs-2 ficon"></i></div>
 					<form action="" method="post">
-						<button name="myButton" value="development" style="background:none; color:white;">Development</button>
+						<button name="myButton" value="development" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Development</button>
 					</form>
 					<p class="couresp">98 Courses</p>
 				</div>
