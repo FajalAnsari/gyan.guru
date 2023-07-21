@@ -222,65 +222,9 @@ if (!isset($_SESSION['email'])) {
 					<form action="" method="post">
 						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
 					</form>
-
+<h1>Urmila</h1>
 
 					<p class="couresp">78 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
-					<form action="" method="post">
-						
-						<button name="myButton" value="investment" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Investment</button>
-					</form>
-					<p class="text-white"> <?php echo  $numCourses;?></p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-language mx-3 fs-2 ficon"></i></div>
-					<form action="" method="post">
-						<button name="myButton" value="Marketing" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Marketing</button>
-					</form>
-					<p class="couresp">85 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-user mx-3 fs-2 ficon"></i></div>
-					<form action="" method="post">
-						<button name="myButton" value="development" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Development</button>
-					</form>
-					<p class="couresp">98 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-photo-film mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Film & Media</b>
-					<p class="couresp">68 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-plus mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Math & Logic</b>
-					<p class="couresp">876 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-suitcase-medical mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Health & Medical</b>
-					<p class="couresp">79 Courses</p>
-				</div>
-			</div>
-			<div class="col">
-				<div class="p-3  exprow text-center">
-					<div><i class="fa-solid fa-creative-commons-sampling mx-3 fs-2 ficon"></i></div>
-					<b class="text-white">Design & Creative</b>
-					<p class="couresp">37 Courses</p>
 				</div>
 			</div>
 			<div>
