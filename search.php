@@ -20,10 +20,6 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
-<<<<<<< HEAD
-    
-=======
->>>>>>> 23f595a164b2137242a07ae5101045690e62600d
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
   
      
