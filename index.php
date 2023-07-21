@@ -231,9 +231,10 @@ if (!isset($_SESSION['email'])) {
 				<div class="p-3  exprow text-center">
 					<div><i class="fa fa-briefcase mx-3 fs-2 ficon" aria-hidden="true"></i></div>
 					<form action="" method="post">
+						
 						<button name="myButton" value="investment" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Investment</button>
 					</form>
-					<p class="text-white"><?php echo $numCourses . ($numCourses > 1 ? ' Courses' : ' Course') . ' Found'; ?></p>
+					<p class="text-white"> <?php echo  $numCourses;?></p>
 				</div>
 			</div>
 			<div class="col">
@@ -311,14 +312,14 @@ if (!isset($_SESSION['email'])) {
 		<div class="seaside mt-5 text-center">ALL COURSES</div>
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
 			<?php
-
+              
 			if ($_SERVER["REQUEST_METHOD"] === "POST") {
 				if (isset($_POST['myButton'])) {
 					$filtervalues = $_POST['myButton'];
 					$sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-
+					
 					$query = "SELECT * FROM `posts` WHERE category LIKE ?";
-
+					
 					// PREPARE STATEMENT
 					$stmt = $con->prepare($query);
 					if ($stmt) {
@@ -332,9 +333,9 @@ if (!isset($_SESSION['email'])) {
 						$result = $stmt->get_result();
 
 						$numCourses = $result->num_rows;
-						if ($numCourses > 0) {
-
-
+						
+							
+							
 
 
 							// OUTPUT DATA OF EACH ROW
@@ -367,7 +368,8 @@ if (!isset($_SESSION['email'])) {
 						echo "Error in the query.";
 					}
 				}
-			}
+			
+			echo  $numCourses;
 			?>
 
 		</div>
