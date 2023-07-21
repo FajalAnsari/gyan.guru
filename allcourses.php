@@ -139,16 +139,7 @@ include 'action/config.php';
         }
       }
       ?>
-
-
-
-
-
-
-
-
-
-
+      
     </div>
     <br>
     <div>
