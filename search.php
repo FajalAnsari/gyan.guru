@@ -42,8 +42,8 @@
 
                     // OUTPUT DATA OF EACH ROW
                     while ($row = $result->fetch_assoc()) {
-        ?>
-                        <div class="col">
+        ?>             
+                        <div class="row">
                             <div class="card cardborder">
                                 <img src='<?php echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
                                 <div class="card-body">
@@ -61,6 +61,7 @@
                                 </div>
                             </div>
                         </div>
+                    
         <?php
                     }
                 } else {
