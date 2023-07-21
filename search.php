@@ -17,8 +17,12 @@
 
 <body>
     <?php include 'header.php'; ?>
-    <div class="container" style="margin-top:80px;">
-        <h1>Coures</h1>
+
+
+    <div class="container topcourse" style="margin-top:100px;">
+    <h1 class="text-center">Coures</h1>
+    <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
+     
         <?php
         if (isset($_GET['search'])) {
             $filtervalues = $_GET['search'];
@@ -75,6 +79,9 @@
 
 
     </div>
+    </div>
+
+
     <?php include 'footer.php' ?>
 
     <script>
