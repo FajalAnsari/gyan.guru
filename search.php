@@ -20,7 +20,10 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
-    <h1 class="text-center">Coures</h1>
+    <?php
+    "SELECT * FROM `posts` WHERE category LIKE ?";
+
+    echo "<h2>No results found for: $filtervalues</h2>"?>;
     <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
      
         <?php
