@@ -215,18 +215,25 @@ if (!isset($_SESSION['email'])) {
 			</nav>
 		</span>
 		<div class="row row-cols-2 row-cols-lg-4 g-2 g-lg-4 mt-4 m-5">
-			<div class="col">
-				<div class="p-3  exprow text-center mb-5">
-					<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
-					<!-- A form containing the button -->
-					<form action="" method="post">
-						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
-					</form>
-<h1>Urmila</h1>
-
-					<p class="couresp">78 Courses</p>
+			<?php
+			$data = mysqli_query($con, "SELECT * FROM category");
+			while ($res = mysqli_fetch_array($data)) : ?>
+				<div class="col">
+					<div class="p-3  exprow text-center mb-5">
+						<div><i class="fa-solid fa-dna mx-3 fs-2 ficon"></i></div>
+						<form action="" method="post">
+							<button name="myButton" value="finance"<?=$res['category'] ?> style="background:none; color:white; margin-top:10px; margin-bottom:10px;"><?=$res['category'] ?></button>
+						</form>
+						<!-- <p class="couresp"><?= $res['category'] ?></p> -->
+						<?php
+						$data1 = mysqli_query($con, "SELECT * FROM posts WHERE cat_id = $res[id] ");
+						$res1 = mysqli_num_rows($data1) ?>
+						
+						<p class="couresp"><?= $res1 ?></p>
+						<?php ?>
+					</div>
 				</div>
-			</div>
+			<?php endwhile; ?>
 			<div>
 				<br>
 				<nav aria-label="Page navigation example">
@@ -308,9 +315,7 @@ if (!isset($_SESSION['email'])) {
 						} else {
 							echo "<h2>No results found for: $filtervalues</h2>"; // Display the search term
 						}
-					} else {
-						echo "Error in the query.";
-					}
+					} 
 				}
 			}
 			?>
