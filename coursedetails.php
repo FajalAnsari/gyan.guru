@@ -87,7 +87,7 @@ $id = $_GET['id'];
                                 $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = $data1[id]  ");
                                 while ($data2 = mysqli_fetch_array($cur1)) { ?>
                                     <div>
-                                        <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $data2['id'] ?>" class="ancquestion">
+                                        <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $_SESSION['id']= $data2['id'] ?>" class="ancquestion">
                                             <p class="curi"><?= $data2['question']; ?></p>
                                         </a>
                                     </div>
@@ -132,7 +132,7 @@ $id = $_GET['id'];
             <div class="col-lg-4">
                 <div class="mt-5 mx-3 ">
 
-                    <a href="enrolledcourse.php?id=<?= $id ?>"><button type="button" class="btn btngetcourse btn-lg">Get Course</button></a>
+                    <a href="enrolledcourse.php?id=<?= $id ?>&cid=<?= $_SESSION['id'] ?>"><button type="button" class="btn btngetcourse btn-lg">Get Course</button></a>
                     <p class="mt-5">Category : <b>Developement</b></p>
                     <p class="mt-5 text-center">Enrolled Course : <b>2</b></p>
                     <hr>
