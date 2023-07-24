@@ -321,7 +321,7 @@ if (!isset($_SESSION['email'])) {
 			?>
 
 		</div>
-		<div class="text-center mt-5 mb-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Courses</button></a></div>
+		
 	</div>
 
 
