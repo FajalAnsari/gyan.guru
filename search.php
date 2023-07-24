@@ -20,18 +20,7 @@
 
 
     <div class="container topcourse" style="margin-top:100px;">
-<<<<<<< HEAD
-    <div class="row row-cols-1 row-cols-md-4 g-4 mt-5" >
-  
-     
-    <?php
-        if (isset($_GET['search'])) {
-            $filtervalues = $_GET['search'];
-            $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-            $query = "SELECT * FROM `posts` WHERE category LIKE ?";
-=======
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-5">
->>>>>>> bd9f6e28327d4d629442644fc48e8a56b25de053
 
 
             <?php
