@@ -222,8 +222,6 @@ if (!isset($_SESSION['email'])) {
 					<form action="" method="post">
 						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
 					</form>
-<h1>Urmila</h1>
-
 					<p class="couresp">78 Courses</p>
 				</div>
 			</div>
@@ -316,7 +314,7 @@ if (!isset($_SESSION['email'])) {
 			?>
 
 		</div>
-		<div class="text-center mt-5 mb-5"><a href="allcourses.php"><button type="button" class="btn btngetcourse btn-lg">View All Courses</button></a></div>
+		
 	</div>
 
 
