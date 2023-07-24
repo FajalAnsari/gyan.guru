@@ -41,13 +41,13 @@ include '../action/config.php';
 				<div class="content-wrapper">
 
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 
 							<div class="card">
 								<div class="card-body">
 									<h5>Add <?= $page ?> Title</h5>
-									<form method="post" enctype="multipart/form-data" runat="server">
-										<div class="col-md-12 my-2">
+									<form method="post" enctype="multipart/form-data" runat="server" class="row">
+										<div class="col-md-6 my-2">
 											<label>Course Detail</label>
 
 											<select name="post_id" class="js-example-basic-multiple form-control form-control-sm">
@@ -57,6 +57,15 @@ include '../action/config.php';
 												while ($res = mysqli_fetch_array($qry)) : ?>
 													<option value="<?= $res['id'] ?>"><?= $res['title'] ?></option>
 												<?php endwhile; ?>
+											</select>
+
+										</div>
+										<div class="col-md-6 my-2">
+											<label>Lession Detail</label>
+
+											<select name="post_id" class="js-example-basic-multiple form-control form-control-sm">
+												<option value=""> -- SELECT --</option>												
+													<option value="Abhi Soch Rhe HAi">Abhi Soch Rhe HAi</option>
 											</select>
 
 										</div>
@@ -83,111 +92,56 @@ include '../action/config.php';
 
 						</div>
 
-
-							<div class="card">
-								<div class="card-body">
-									<h5>Add <?= $page ?></h5>
-									<form method="post" enctype="multipart/form-data" runat="server">
-										<div class="row">											
-
-											<div class="col-md-12 my-2">
-												<label>Select Curicullum Title</label>
-
-												<select name="curi_id" class="js-example-basic-multiple form-control form-control-sm">
-													<option value=""> -- SELECT --</option>
-													<?php
-													$qry = mysqli_query($con, "SELECT * FROM `curicullum_title` ");
-													while ($res = mysqli_fetch_array($qry)) : ?>
-														<option value="<?= $res['id'] ?>"><?= $res['title'] ?></option>
-													<?php endwhile; ?>
-												</select>
-
-											</div>
-
-
-											<div class="col-md-12 my-2">
-												<label>Quastion </label>
-												<input name="qus" placeholder="Type Question !" class="form-control form-control-sm " type="text" required>
-											</div>
-
-											<div class="col-md-12 my-2">
-												<label>Answer </label>
-												<input name="ans" placeholder="Type Answer !" class="form-control form-control-sm " type="text" required>
-											</div>
-
-
-											<div class="col-md-12" style="margin-top:28px;">
-												<div class="text-center col-md-6" style="margin-top:28px;">
-													<button type="submit" name="add_curicullum" class="btn btn-primary btn-block">Save</button>
-												</div>
-											</div>
-										</div>
-									</form>
-								</div>
-							</div>
-
-
-
-
-						</div>
-
-
 					</div>
-
-
-
-
-					<!-- 
-					<div class="card">
-						<div class="card-header">
-							<h2><?= $page ?> List</h2>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<table class="table text-center">
-									<thead>
-										<th>S.no</th>
-										<th class="text-left">Question</th>
-										<th>Answer</th>
-
-									</thead>
-									<tbody>
-										<?php
-										$i = 1;
-										$qry = mysqli_query($con, "SELECT * FROM `curicullum` ORDER BY id DESC");
-										while ($res = mysqli_fetch_array($qry)) :
-										?>
-											<tr>
-												<form method="post" enctype="multipart/form-data" runat="server">
-													<td><?= $i++; ?></td>
-													<td>
-														<input type="text" name="qus" value="<?= $res['question'] ?>" class="form-control form-control-sm" required>
-													</td>
-
-													<td>
-														<input type="text" name="qus" value="<?= $res['answer'] ?>" class="form-control form-control-sm" required>
-													</td>
-
-												</form>
-											</tr>
-										<?php
-										endwhile;
-										?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				
-				
-				 -->
-
-
 
 
 				</div>
+
+
+
+
+
+				<div class="card">
+					<div class="card-header">
+						<h2><?= $page ?> List</h2>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table text-center">
+								<thead>
+									<th>S.no</th>
+									<th class="text-left">Question</th>
+									<th>Answer</th>
+
+								</thead>
+								<tbody>
+									<?php
+									$i = 1;
+									$qry = mysqli_query($con, "SELECT * FROM `curicullum` ORDER BY id DESC");
+									while ($res = mysqli_fetch_array($qry)) :
+									?>
+										<tr>
+											<td><?= $i++; ?></td>
+											<td>
+												<input type="text" name="qus" value="<?= $res['question'] ?>" class="form-control form-control-sm" required>
+											</td>
+
+											<td>
+												<input type="text" name="qus" value="<?= $res['answer'] ?>" class="form-control form-control-sm" required>
+											</td>
+										</tr>
+									<?php
+									endwhile;
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
+	</div>
 	</div>
 	<script src="vendors/js/vendor.bundle.base.js"></script>
 	<script src="vendors/moment/moment.min.js"></script>
