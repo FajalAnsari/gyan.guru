@@ -184,7 +184,7 @@ if (isset($_POST['delete_category'])) {
 
 //============================ Add Curicullum Title =======================================
 if (isset($_POST['add_curicullum_title'])) {
-    
+
     $post_id = $_POST['post_id'];
     $title = $_POST['title'];
 
@@ -196,7 +196,6 @@ if (isset($_POST['add_curicullum_title'])) {
 //================================ Add Curicullum =======================================
 if (isset($_POST['add_curicullum'])) {
 
-    // $post_id = $_POST['post_id'];
     $curi_id = $_POST['curi_id'];
     $qus = $_POST['qus'];
     $ans = $_POST['ans'];
@@ -215,30 +214,30 @@ if (isset($_POST['add_curicullum'])) {
 
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $subject = $_POST['subject'];
-    $comments = $_POST['comments'];
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     // Retrieve form data
+//     $name = $_POST['name'];
+//     $email = $_POST['email'];
+//     $phone = $_POST['phone'];
+//     $subject = $_POST['subject'];
+//     $comments = $_POST['comments'];
 
-    // Validate form data (perform necessary validation checks)
+//     // Validate form data (perform necessary validation checks)
 
-    // Send the message
-    $to = 'urmila@difm.tech'; // Replace with your email address
-    $subject = 'New Message: ' . $subject;
-    $message = "Name: $name\n";
-    $message .= "Email: $email\n";
-    $message .= "Phone: $phone\n";
-    $message .= "Comments: $comments\n";
-    $headers = "From: $email";
+//     // Send the message
+//     $to = 'urmila@difm.tech'; // Replace with your email address
+//     $subject = 'New Message: ' . $subject;
+//     $message = "Name: $name\n";
+//     $message .= "Email: $email\n";
+//     $message .= "Phone: $phone\n";
+//     $message .= "Comments: $comments\n";
+//     $headers = "From: $email";
 
-    if (mail($to, $subject, $message, $headers)) {
-        // Message sent successfully
-        echo 'Message sent! Thank you for contacting us.';
-    } else {
-        // Error sending message
-        echo 'An error occurred while sending the message. Please try again later.';
-    }
-}
+//     if (mail($to, $subject, $message, $headers)) {
+//         // Message sent successfully
+//         echo 'Message sent! Thank you for contacting us.';
+//     } else {
+//         // Error sending message
+//         echo 'An error occurred while sending the message. Please try again later.';
+//     }
+// }

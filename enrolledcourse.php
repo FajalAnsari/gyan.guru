@@ -73,7 +73,7 @@ $id = $_GET['id'];
                     }
                 }
                 ?>
-                </div>
+            </div>
 
             <div class="col-md-10 mt-3">
                 <?php
@@ -81,9 +81,10 @@ $id = $_GET['id'];
                     $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum`")); ?>
 
                     <b><?= $cur1['question'] ?></b><br>
-                    <p><?= $cur1['answer'] ?></p><?php
-                                                } else {
-                                                    $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $_GET[cid]")); ?>
+                    <p><?= $cur1['answer'] ?></p>
+                <?php
+                } else {
+                    $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $_GET[cid]")); ?>
 
 
                     <b><?= $cur1['question'] ?></b><br>
