@@ -222,9 +222,8 @@ if (!isset($_SESSION['email'])) {
 					<form action="" method="post">
 						<button name="myButton" value="finance" style="background:none; color:white; margin-top:10px; margin-bottom:10px;">Finance</button>
 					</form>
-<h1>Urmila</h1>
-
-					<p class="couresp">78 Courses</p>
+                     
+                     <p class="couresp">78 Courses</p>
 				</div>
 			</div>
 			<div>
@@ -277,7 +276,7 @@ if (!isset($_SESSION['email'])) {
 						$result = $stmt->get_result();
 
 						$numCourses = $result->num_rows;
-						if ($numCourses > 0) {
+						
 							
 							
 
@@ -312,8 +311,8 @@ if (!isset($_SESSION['email'])) {
 						echo "Error in the query.";
 					}
 				}
-			}
-			echo  $numCourses;
+			
+			
 			?>
 
 		</div>
