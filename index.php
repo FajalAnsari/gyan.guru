@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -234,78 +234,77 @@ if (!isset($_SESSION['email'])) {
 						<?php ?>
 					</div>
 				</div>
+				
 			<?php endwhile; 
 			
 			
 ?>
-
+ 
 			
 			<div>
 				<script>
 					
-
-$(document).ready(function() {
-    // Get a reference to the buttons and result div
+					$(document).ready(function() {
     const ajaxButtons = $('.fetchdata');
-    const resultDiv = $('.resuldiv'); // Make sure you have an element with the ID "resuldiv" to display the fetched course data
+    const resultDiv = $('.resuldiv');
+	const selectedCategoryDiv = $('#selectedCategory');
 
-    // Add a click event handler to all buttons with the class "fetchdata"
     ajaxButtons.on('click', function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
-        // Get the category value from the clicked button
         const category = $(this).val();
-		console.log(category);
-        // Make an AJAX POST request
+		selectedCategoryDiv.text(category);
+
         $.ajax({
-            url: 'index.php', // Replace 'your_server_endpoint_here' with your actual server endpoint
+            url: 'action/config.php',
             type: 'POST',
-			dataType: 'JSON',
-           // Set the expected data type to JSON
-            data: { category: category }, // Pass the selected category to the server
-            success: function(responseData) {
-				console.log(responseData);
-                // Request was successful, handle the JSON response
-                if (responseData.status === 'success') {
-                    // Process and display the courses
-                    resultDiv.empty();
-					
-                    for (const course of responseData.courses) {
-                        // Generate the course card HTML
-                        const courseCard = `
-                            <div class="col resuldiv" >
-                                <div class="card cardborder">
-                                    <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
-                                    <div class="card-body">
-                                        <a href="coursedetails.php?id=${course.id}">
-                                            <button type="button" class="btn btn-primary position-relative bgi">
-                                                VIEW COURSE
-                                                <span class="position-absolute top-100 start-100 translate-middle badge">
-                                                    Free
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                            </button>
-                                        </a>
-                                        <h5 class="card-title">${course.title}</h5>
-                                        <!-- <p class="card-text">${course.desc}</p> -->
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        resultDiv.append(courseCard);
-                    }
-                } else {
-                    resultDiv.text('Error: ' + responseData.message);
-                }
-            },
+            dataType: 'json',
+            data: { category: category }, // Send the category value as 'category' to the server
+			success: function(responseData) {
+    if (responseData.status === 'success') {
+        
+	
+        resultDiv.empty(); // Clear previous results
+        const data = responseData.data; // Get the 'data' array from the response
+		
+        for (const course of data) {
+
+            // Generate the course card HTML for each course object
+            const courseCard = `
+                <div class="col resuldiv">
+                    <div class="card cardborder">
+                        <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
+                        <div class="card-body">
+                            <a href="coursedetails.php?id=${course.id}">
+                                <button type="button" class="btn btn-primary position-relative bgi">
+                                    VIEW COURSE
+                                    <span class="position-absolute top-100 start-100 translate-middle badge">
+                                        Free
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </button>
+                            </a>
+                            <h5 class="card-title">${course.title}</h5>
+                        </div>
+                    </div>
+                </div>
+            `;
+			resultDiv.append(courseCard)// Append each course card to the resultDiv
+        }
+    } else {
+        resultDiv.text('Error: ' + responseData.message);
+    }
+},
+
             error: function(xhr, status, error) {
                 // Request failed
-				console.error("Error: " + error);
-                resultDiv.text('Error: ' + error);
+                console.error('Error:', error);
+				console.error(error);
             }
         });
     });
 });
+
 
 
 
@@ -334,127 +333,27 @@ $(document).ready(function() {
 		<!-- <pre class="text-end sall pb-5 pe-5 colorchange">See All</pre> -->
 	</div>
 
-	 <div class="container">
-		<div class="seaside mt-5 text-center">ALL COURSES</div>
+	 <div class="container .resuldiv">
+		<div class="seaside mt-5 text-center"id="selectedCategory">ALL COURSES</div>
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-			<?php
-			
-			// Assuming you already have the database connection established
-			// $con = new mysqli(...); // Your database connection code
-			
-			// Check if the database connection was successful
-			if ($con->connect_error) {
-				die("Connection failed: " . $con->connect_error);
-			}
-			
-			// Rest of your PHP code here
-			
-			
-              
-			
-			// Assuming you already have the database connection established
-			// $con = new mysqli(...); // Your database connection code
-			
 		
-// Assuming you already have the database connection established
-// $con = new mysqli(...); // Your database connection code
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['myButton'])) {
-        // Sanitize the input
-        $filtervalues = $_POST['myButton'];
-        $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-
-        // Prepare the SQL query
-        $query = "SELECT * FROM `posts` WHERE category LIKE ?";
-
-        // PREPARE STATEMENT
-        $stmt = $con->prepare($query);
-        if ($stmt) {
-            // BIND PARAMETER
-            $stmt->bind_param("s", $sanitizedFilter);
-
-            // EXECUTE QUERY
-            $stmt->execute();
-
-            // GET RESULT
-            $result = $stmt->get_result();
-
-            // Check if there are any results
-            if ($result->num_rows > 0) {
-                // Fetch data of each row and add to the $courses array
-                $courses = array();
-                while ($row = $result->fetch_assoc()) {
-                    $courses[] = $row;
-                }
-
-                // Close the statement
-                $stmt->close();
-
-                // RESPONSE ARRAY TO SEND BACK TO THE CLIENT
-                $response = array(
-                    'status' => 'success',
-                    'courses' => $courses
-                );
-
-                // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-                $jsonData = json_encode($response);
-
-                // Set the Content-Type header to specify that this is JSON data
-                header('Content-Type: application/json');
-
-                // SEND THE JSON RESPONSE BACK TO THE CLIENT
-                echo $jsonData;
-            } else {
-                // No results found
-                // RESPONSE ARRAY IF NO RESULTS FOUND
-                $response = array(
-                    'status' => 'error',
-                    'message' => 'No results found for: ' . htmlspecialchars($filtervalues)
-                );
-
-                // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-                $jsonData = json_encode($response);
-
-                // Set the Content-Type header to specify that this is JSON data
-                header('Content-Type: application/json');
-
-                // SEND THE JSON RESPONSE BACK TO THE CLIENT
-                
-            }
-        } else {
-            // Error in preparing the statement
-            // RESPONSE ARRAY IF ERROR OCCURRED
-            $response = array(
-                'status' => 'error',
-                'message' => 'Error in preparing the statement'
-            );
-
-            // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-            $jsonData = json_encode($response);
-
-            // Set the Content-Type header to specify that this is JSON data
-            header('Content-Type: application/json');
-
-            // SEND THE JSON RESPONSE BACK TO THE CLIENT
-            echo $jsonData;
-        }
-    }
-}
-?>
+			
+			
+			
+			
 
 			
 			<!-- Rest of your HTML code here -->
 			<?php
 
 							// OUTPUT DATA OF EACH ROW
-						//	while ($row = $result->fetch_assoc()) {
+					
 			
 					?>			<div class="col resuldiv" >
 									<div class="card cardborder">
-										<img src='<?php //echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
+										<img src=' ' class="card-img-top" alt="..." style="height: 245px;">
 										<div class="card-body">
-											<a href="coursedetails.php?id=<?php// echo $row['id']; ?>">
+											<a href=" ?>">
 												<button type="button" class="btn btn-primary position-relative bgi">
 													VIEW COURSE
 													<span class="position-absolute top-100 start-100 translate-middle badge">
@@ -463,21 +362,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 													</span>
 												</button>
 											</a>
-											<h5 class="card-title"><?php //echo $row['title'] ?></h5>
-											 <p class="card-text"><?php// echo $row['desc'] ?></p> 
+											<h5 class="card-title"></h5>
+											 <p class="card-text"></p> 
 										</div>
 									</div>
 								</div>
-			<?php
-						// 	}
-						// } else {
-						// 	echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
-						// }
+			
+						
 					 
 			
 			
 			
-			?>
+			
 
 		</div>
 		
