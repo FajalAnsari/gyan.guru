@@ -381,33 +381,50 @@ if (!isset($_SESSION['email'])) {
 	<div class="container">
 		<div class="seaside mt-5">STUDENTS REVIEW </div>
 		<section class="p-4 p-md-5 text-center text-lg-start  rounded">
-			<div class="row d-flex justify-content-center">
-				<div class="col-md-10">
-					<div class="card " style="border: none;">
-						<div class="card-body m-3">
-							<div class="row">
-								<div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-									<img src="./assets/imgs/Student Photo.png" class=" img-fluid shadow-1 imagesadhow" alt="woman avatar" width="200" height="200" />
-								</div>
-								<div class="col-lg-8">
-									<div>
-										<button class="rounded-circle arrowcolor">&larr;</button>
-										<button class="rounded-circle arrowcolor">&rarr;</button>
-									</div>
-									<p class="fw-bold lead mb-2 mt-4 emilliecolor"><strong>Emillie Jonas</strong></p>
-									<p class="fw-bold mb-0 englandcolor">England</p>
-									<p class=".footertext fw-light mt-3">
-										Eduprix is an ideal location for anybody who wants to learn something new or share what they know with others.
-										Eduprix is a worldwide platform for online learning that helps to connect with one another via knowledge.
-										It comes highly recommended from my side.
-									</p>
-								</div>
+		<div class="container">
+    <div id="studentCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+		
+            <?php
+            $data = mysqli_query($con, "SELECT * FROM studentreview");
+            $firstItem = true;
+            while ($res = mysqli_fetch_array($data)) { 
+                $activeClass = $firstItem ? 'active' : '';
+                $firstItem = false;
+            ?>
+                <div class="carousel-item <?php echo $activeClass; ?>">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+						<img src="<?php echo $res['image']; ?>" class="img-fluid shadow-1 imagesadhow" alt="woman avatar" width="200" />
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                        <div class="col-lg-8">
+                            
+                            <p class="fw-bold lead mb-2 mt-4 emilliecolor"><strong><?php echo $res['name']; ?></strong></p>
+                            <p class="fw-bold mb-0 englandcolor"><?php echo $res['state']; ?></p>
+                            <p class=".footertext fw-light mt-3">
+                                <?php echo $res['descrp']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+
+            
+                               <div class="text-center mt-5">
+                                <!-- Modified buttons with carousel functionality -->
+                                <button class="rounded-circle arrowcolor carousel-prev " type="button" data-bs-target="#studentCarousel" data-bs-slide="prev">
+                                    &larr;
+                                </button>
+                                <button class="rounded-circle arrowcolor carousel-next " type="button" data-bs-target="#studentCarousel" data-bs-slide="next">
+                                    &rarr;
+                                </button>
+                            </div>
 		</section>
 
 	</div>
@@ -667,6 +684,7 @@ if (!isset($_SESSION['email'])) {
 			}
 			$carousel.find(elCarouselCounter).html('' + currentIndex + '/' + ti + '');
 		});
+		
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
