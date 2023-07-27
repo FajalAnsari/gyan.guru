@@ -1,4 +1,6 @@
-<?php include './action/db_connect.php' ?>
+<?php include './action/db_connect.php' 
+
+?>
 <!DOCTYPE html>
 
 <head>
@@ -35,7 +37,7 @@
 
 
                     while ($row = mysqli_fetch_array($query)) {
-                        $data = mysqli_query($con, "SELECT * FROM posts WHERE cat_id = $row[id]");
+                        $data = mysqli_query($con, "SELECT * FROM posts WHERE  category LIKE '%$filtervalues%'" );
                         while ($res = mysqli_fetch_array($data)) { ?>
 
 

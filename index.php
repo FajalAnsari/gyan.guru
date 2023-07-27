@@ -271,7 +271,7 @@ if (!isset($_SESSION['email'])) {
 
             // Generate the course card HTML for each course object
             const courseCard = `
-                <div class="col resuldiv">
+                <div class="col ">
                     <div class="card cardborder">
                         <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
                         <div class="card-body">
@@ -368,14 +368,7 @@ if (!isset($_SESSION['email'])) {
 									</div>
 								</div>
 			
-						
-					 
-			
-			
-			
-			
-
-		</div>
+						</div>
 		
 	</div>
 

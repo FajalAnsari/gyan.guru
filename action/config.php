@@ -27,12 +27,11 @@ if (isset($_POST['submit'])) {
         $_SESSION['email'] = $r['username'];
         $_SESSION['image'] = $r['image'];
 
-
-        echo ' <script>
-            alert("Login Success...\nWelcome to ' . $comp_name . ' ");
-            window.location.href="../index.php"; </script> ';
+        header("Location: ../index.php");
+        exit;
     } else {
-        echo ' <script>alert("Invalid Credential"); window.location.href="";</script> ';
+        // Handle incorrect login credentials (e.g., display an error message)
+        echo "Invalid username or password.";
     }
 }
 

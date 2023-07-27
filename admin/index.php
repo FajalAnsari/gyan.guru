@@ -1,5 +1,4 @@
 <?php
-include_once '../action/config.php' ;
 
 // Check if the user is already logged in
 // if (isset($_SESSION['email'])) {
@@ -7,9 +6,11 @@ include_once '../action/config.php' ;
 //     header("Location: index.php");
 //     exit();
 // }
+include_once '../action/config.php' ;
+
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE .html>
 <html lang="en">
 
 <head>
@@ -18,7 +19,7 @@ include_once '../action/config.php' ;
     <title>Document</title>
 </head>
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap'); */
 
     * {
         margin: 0;
@@ -251,7 +252,7 @@ include_once '../action/config.php' ;
                 <div class="slider-tab"></div>
             </div>
             <div class="form-inner">
-                <form  class="login" method="POST">
+                <form  class="login" method="POST" action=../action/config.php>
                     <div class="field">
                         <input type="email" placeholder="Email Address" name="email1" required>
                     </div>
@@ -269,7 +270,7 @@ include_once '../action/config.php' ;
 
 
 
-                <form  class="signup" method="POST">
+                <form  class="signup" method="POST" action=../action/config.php>
                     <div class="field">
                         <input type="text" placeholder="First Name" name="first" required>
                     </div>
