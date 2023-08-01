@@ -12,7 +12,7 @@ if (!isset($_SESSION['email'])) {
 
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -234,78 +234,77 @@ if (!isset($_SESSION['email'])) {
 						<?php ?>
 					</div>
 				</div>
+				
 			<?php endwhile; 
 			
 			
 ?>
-
+ 
 			
 			<div>
 				<script>
 					
-
-$(document).ready(function() {
-    // Get a reference to the buttons and result div
+					$(document).ready(function() {
     const ajaxButtons = $('.fetchdata');
-    const resultDiv = $('.resuldiv'); // Make sure you have an element with the ID "resuldiv" to display the fetched course data
+    const resultDiv = $('.resuldiv');
+	const selectedCategoryDiv = $('#selectedCategory');
 
-    // Add a click event handler to all buttons with the class "fetchdata"
     ajaxButtons.on('click', function(event) {
         event.preventDefault(); // Prevent the default form submission behavior
 
-        // Get the category value from the clicked button
         const category = $(this).val();
-		console.log(category);
-        // Make an AJAX POST request
+		selectedCategoryDiv.text(category);
+
         $.ajax({
-            url: 'index.php', // Replace 'your_server_endpoint_here' with your actual server endpoint
+            url: 'action/config.php',
             type: 'POST',
-			dataType: 'JSON',
-           // Set the expected data type to JSON
-            data: { category: category }, // Pass the selected category to the server
-            success: function(responseData) {
-				console.log(responseData);
-                // Request was successful, handle the JSON response
-                if (responseData.status === 'success') {
-                    // Process and display the courses
-                    resultDiv.empty();
-					
-                    for (const course of responseData.courses) {
-                        // Generate the course card HTML
-                        const courseCard = `
-                            <div class="col resuldiv" >
-                                <div class="card cardborder">
-                                    <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
-                                    <div class="card-body">
-                                        <a href="coursedetails.php?id=${course.id}">
-                                            <button type="button" class="btn btn-primary position-relative bgi">
-                                                VIEW COURSE
-                                                <span class="position-absolute top-100 start-100 translate-middle badge">
-                                                    Free
-                                                    <span class="visually-hidden">unread messages</span>
-                                                </span>
-                                            </button>
-                                        </a>
-                                        <h5 class="card-title">${course.title}</h5>
-                                        <!-- <p class="card-text">${course.desc}</p> -->
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        resultDiv.append(courseCard);
-                    }
-                } else {
-                    resultDiv.text('Error: ' + responseData.message);
-                }
-            },
+            dataType: 'json',
+            data: { category: category }, // Send the category value as 'category' to the server
+			success: function(responseData) {
+    if (responseData.status === 'success') {
+        
+	
+        resultDiv.empty(); // Clear previous results
+        const data = responseData.data; // Get the 'data' array from the response
+		
+        for (const course of data) {
+
+            // Generate the course card HTML for each course object
+            const courseCard = `
+                <div class="col ">
+                    <div class="card cardborder">
+                        <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
+                        <div class="card-body">
+                            <a href="coursedetails.php?id=${course.id}">
+                                <button type="button" class="btn btn-primary position-relative bgi">
+                                    VIEW COURSE
+                                    <span class="position-absolute top-100 start-100 translate-middle badge">
+                                        Free
+                                        <span class="visually-hidden">unread messages</span>
+                                    </span>
+                                </button>
+                            </a>
+                            <h5 class="card-title">${course.title}</h5>
+                        </div>
+                    </div>
+                </div>
+            `;
+			resultDiv.append(courseCard)// Append each course card to the resultDiv
+        }
+    } else {
+        resultDiv.text('Error: ' + responseData.message);
+    }
+},
+
             error: function(xhr, status, error) {
                 // Request failed
-				console.error("Error: " + error);
-                resultDiv.text('Error: ' + error);
+                console.error('Error:', error);
+				console.error(error);
             }
         });
     });
 });
+
 
 
 
@@ -334,127 +333,27 @@ $(document).ready(function() {
 		<!-- <pre class="text-end sall pb-5 pe-5 colorchange">See All</pre> -->
 	</div>
 
-	 <div class="container">
-		<div class="seaside mt-5 text-center">ALL COURSES</div>
+	 <div class="container .resuldiv">
+		<div class="seaside mt-5 text-center"id="selectedCategory">ALL COURSES</div>
 		<div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-			<?php
-			
-			// Assuming you already have the database connection established
-			// $con = new mysqli(...); // Your database connection code
-			
-			// Check if the database connection was successful
-			if ($con->connect_error) {
-				die("Connection failed: " . $con->connect_error);
-			}
-			
-			// Rest of your PHP code here
-			
-			
-              
-			
-			// Assuming you already have the database connection established
-			// $con = new mysqli(...); // Your database connection code
-			
 		
-// Assuming you already have the database connection established
-// $con = new mysqli(...); // Your database connection code
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if (isset($_POST['myButton'])) {
-        // Sanitize the input
-        $filtervalues = $_POST['myButton'];
-        $sanitizedFilter = '%' . $con->real_escape_string($filtervalues) . '%';
-
-        // Prepare the SQL query
-        $query = "SELECT * FROM `posts` WHERE category LIKE ?";
-
-        // PREPARE STATEMENT
-        $stmt = $con->prepare($query);
-        if ($stmt) {
-            // BIND PARAMETER
-            $stmt->bind_param("s", $sanitizedFilter);
-
-            // EXECUTE QUERY
-            $stmt->execute();
-
-            // GET RESULT
-            $result = $stmt->get_result();
-
-            // Check if there are any results
-            if ($result->num_rows > 0) {
-                // Fetch data of each row and add to the $courses array
-                $courses = array();
-                while ($row = $result->fetch_assoc()) {
-                    $courses[] = $row;
-                }
-
-                // Close the statement
-                $stmt->close();
-
-                // RESPONSE ARRAY TO SEND BACK TO THE CLIENT
-                $response = array(
-                    'status' => 'success',
-                    'courses' => $courses
-                );
-
-                // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-                $jsonData = json_encode($response);
-
-                // Set the Content-Type header to specify that this is JSON data
-                header('Content-Type: application/json');
-
-                // SEND THE JSON RESPONSE BACK TO THE CLIENT
-                echo $jsonData;
-            } else {
-                // No results found
-                // RESPONSE ARRAY IF NO RESULTS FOUND
-                $response = array(
-                    'status' => 'error',
-                    'message' => 'No results found for: ' . htmlspecialchars($filtervalues)
-                );
-
-                // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-                $jsonData = json_encode($response);
-
-                // Set the Content-Type header to specify that this is JSON data
-                header('Content-Type: application/json');
-
-                // SEND THE JSON RESPONSE BACK TO THE CLIENT
-                
-            }
-        } else {
-            // Error in preparing the statement
-            // RESPONSE ARRAY IF ERROR OCCURRED
-            $response = array(
-                'status' => 'error',
-                'message' => 'Error in preparing the statement'
-            );
-
-            // CONVERT THE RESPONSE ARRAY TO JSON FORMAT
-            $jsonData = json_encode($response);
-
-            // Set the Content-Type header to specify that this is JSON data
-            header('Content-Type: application/json');
-
-            // SEND THE JSON RESPONSE BACK TO THE CLIENT
-            echo $jsonData;
-        }
-    }
-}
-?>
+			
+			
+			
+			
 
 			
 			<!-- Rest of your HTML code here -->
 			<?php
 
 							// OUTPUT DATA OF EACH ROW
-						//	while ($row = $result->fetch_assoc()) {
+					
 			
 					?>			<div class="col resuldiv" >
 									<div class="card cardborder">
-										<img src='<?php //echo 'assets/imgs/' . $row['image']; ?>' class="card-img-top" alt="..." style="height: 245px;">
+										<img src=' ' class="card-img-top" alt="..." style="height: 245px;">
 										<div class="card-body">
-											<a href="coursedetails.php?id=<?php// echo $row['id']; ?>">
+											<a href=" ?>">
 												<button type="button" class="btn btn-primary position-relative bgi">
 													VIEW COURSE
 													<span class="position-absolute top-100 start-100 translate-middle badge">
@@ -463,23 +362,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 													</span>
 												</button>
 											</a>
-											<h5 class="card-title"><?php //echo $row['title'] ?></h5>
-											 <p class="card-text"><?php// echo $row['desc'] ?></p> 
+											<h5 class="card-title"></h5>
+											 <p class="card-text"></p> 
 										</div>
 									</div>
 								</div>
-			<?php
-						// 	}
-						// } else {
-						// 	echo "<h2>No results found for: " . htmlspecialchars($filtervalues) . "</h2>"; // Display the search term
-						// }
-					 
 			
-			
-			
-			?>
-
-		</div>
+						</div>
 		
 	</div>
 
@@ -492,33 +381,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	<div class="container">
 		<div class="seaside mt-5">STUDENTS REVIEW </div>
 		<section class="p-4 p-md-5 text-center text-lg-start  rounded">
-			<div class="row d-flex justify-content-center">
-				<div class="col-md-10">
-					<div class="card " style="border: none;">
-						<div class="card-body m-3">
-							<div class="row">
-								<div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
-									<img src="./assets/imgs/Student Photo.png" class=" img-fluid shadow-1 imagesadhow" alt="woman avatar" width="200" height="200" />
-								</div>
-								<div class="col-lg-8">
-									<div>
-										<button class="rounded-circle arrowcolor">&larr;</button>
-										<button class="rounded-circle arrowcolor">&rarr;</button>
-									</div>
-									<p class="fw-bold lead mb-2 mt-4 emilliecolor"><strong>Emillie Jonas</strong></p>
-									<p class="fw-bold mb-0 englandcolor">England</p>
-									<p class=".footertext fw-light mt-3">
-										Eduprix is an ideal location for anybody who wants to learn something new or share what they know with others.
-										Eduprix is a worldwide platform for online learning that helps to connect with one another via knowledge.
-										It comes highly recommended from my side.
-									</p>
-								</div>
+		<div class="container">
+    <div id="studentCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
+        <div class="carousel-inner">
+		
+            <?php
+            $data = mysqli_query($con, "SELECT * FROM studentreview");
+            $firstItem = true;
+            while ($res = mysqli_fetch_array($data)) { 
+                $activeClass = $firstItem ? 'active' : '';
+                $firstItem = false;
+            ?>
+                <div class="carousel-item <?php echo $activeClass; ?>">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4 d-flex justify-content-center align-items-center mb-4 mb-lg-0">
+						<img src="<?php echo $res['image']; ?>" class="img-fluid shadow-1 imagesadhow" alt="woman avatar" width="200" />
 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                        </div>
+                        <div class="col-lg-8">
+                            
+                            <p class="fw-bold lead mb-2 mt-4 emilliecolor"><strong><?php echo $res['name']; ?></strong></p>
+                            <p class="fw-bold mb-0 englandcolor"><?php echo $res['state']; ?></p>
+                            <p class=".footertext fw-light mt-3">
+                                <?php echo $res['descrp']; ?>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            <?php
+            }
+            ?>
+        </div>
+    </div>
+</div>
+
+            
+                               <div class="text-center mt-5">
+                                <!-- Modified buttons with carousel functionality -->
+                                <button class="rounded-circle arrowcolor carousel-prev " type="button" data-bs-target="#studentCarousel" data-bs-slide="prev">
+                                    &larr;
+                                </button>
+                                <button class="rounded-circle arrowcolor carousel-next " type="button" data-bs-target="#studentCarousel" data-bs-slide="next">
+                                    &rarr;
+                                </button>
+                            </div>
 		</section>
 
 	</div>
@@ -778,6 +684,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 			}
 			$carousel.find(elCarouselCounter).html('' + currentIndex + '/' + ti + '');
 		});
+		
 	</script>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
