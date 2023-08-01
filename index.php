@@ -292,7 +292,7 @@ if (!isset($_SESSION['email'])) {
                                         const courseCard = `
                 <div class="col mx-3   resuldiv">
                     <div class="card cardborder" id="result">
-                        <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px;">
+                        <img src="assets/imgs/${course.image}" class="card-img-top" alt="..." style="height: 245px; width: 211px;">
                         <div class="card-body">
                             <a href="coursedetails.php?id=${course.id}">
                                 <button type="button" class="btn btn-primary position-relative bgi">
