@@ -27,12 +27,11 @@ if (isset($_POST['submit'])) {
         $_SESSION['email'] = $r['username'];
         $_SESSION['image'] = $r['image'];
 
-
-        echo ' <script>
-            alert("Login Success...\nWelcome to ' . $comp_name . ' ");
-            window.location.href="../index.php"; </script> ';
+        header("Location: ../index.php");
+        exit;
     } else {
-        echo ' <script>alert("Invalid Credential"); window.location.href="";</script> ';
+        // Handle incorrect login credentials (e.g., display an error message)
+        echo "Invalid username or password.";
     }
 }
 
@@ -241,10 +240,49 @@ if (isset($_POST['add_curicullum'])) {
 //         echo 'An error occurred while sending the message. Please try again later.';
 //     }
 // }
+//----------------AJAX----------//
 
 
 
+// Fetch data from the database (You should replace this with your actual database query)
+// Assuming the category value is passed in the 'category' parameter
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+// Assuming the category value is passed in the 'category' parameter
+$category = $_POST['category'];
+
+// Sanitize the input to prevent SQL injection
+$category = mysqli_real_escape_string($con, $category);
+
+$data = array();
+
+// Perform the database query
+$result = mysqli_query($con, "SELECT * FROM posts WHERE category = '$category'");
+while ($row = mysqli_fetch_assoc($result)) {
+    $id = $row['id'];
+    $image = $row['image'];
+    $title = $row['title'];
+
+    $data[] = array(
+        "id" => $id,
+        "image" => $image,
+        "title" => $title,
+    );
+}
+
+// Prepare the JSON response
+$response = array(
+    'status' => 'success',
+    'data' => $data,
+);
+
+// Set the Content-Type header to specify that this is JSON data
+header('Content-Type: application/json');
+
+// Send the JSON response back to the client
+$jsonData = json_encode($response);
+echo $jsonData;
+
+}
 
 
-
-
+//------------------------------//
