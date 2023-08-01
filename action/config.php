@@ -241,3 +241,10 @@ if (isset($_POST['add_curicullum'])) {
 //         echo 'An error occurred while sending the message. Please try again later.';
 //     }
 // }
+
+
+
+
+
+
+
