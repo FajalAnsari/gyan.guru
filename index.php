@@ -332,6 +332,7 @@ if (!isset($_SESSION['email'])) {
                         <li class="page-item">
                             <a class="page-link colorchange" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
+                                <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link colorchange" href="#">1</a></li>
