@@ -308,8 +308,7 @@ if (!isset($_SESSION['email'])) {
                     </div>
                 </div>
 				
-            `;
-                                        resultDiv.append(
+            `;  resultDiv.append(
                                                 courseCard
                                                 ) // Append each course card to the resultDiv
                                     }
@@ -354,20 +353,6 @@ if (!isset($_SESSION['email'])) {
     <div class="container .resuldiv">
         <div class="seaside mt-5 text-center" id="selectedCategory">ALL COURSES</div>
         <div class="row row-cols-1 row-cols-md-4 g-4 mt-4">
-
-
-
-
-
-
-
-            <!-- Rest of your HTML code here -->
-            <?php
-
-							// OUTPUT DATA OF EACH ROW
-					
-			
-					// ?>
             <div class="col resuldiv d-flex">
                 <div class="card cardborder">
                     <img src=' ' class="card-img-top" alt="..." style="height: 245px;">
@@ -462,7 +447,7 @@ if (!isset($_SESSION['email'])) {
                     <div><img src="./assets/imgs/Illustration.png" /></div>
                     <h3 class="mathunknown">1257</h3>
                     <h4 class="unknownh4">Top <br> Courses</h4>
-                    <p class="fs-40">Take courses from the world's<br> best instructors and universities. </p>
+                    <p class="fs-40">Take courses from the world’s<br> best instructors and universities. </p>
                 </div>
             </div>
             <div class="col">
