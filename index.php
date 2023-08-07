@@ -248,6 +248,7 @@ if (!isset($_SESSION['email'])) {
 						$res1 = mysqli_num_rows($data1) ?>
 
                     <p class="couresp"><?= $res1 ?></p>
+                  
 
                 </div>
             </div>
@@ -332,7 +333,7 @@ if (!isset($_SESSION['email'])) {
                         <li class="page-item">
                             <a class="page-link colorchange" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
-                                <span aria-hidden="true">&laquo;</span>
+                               
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link colorchange" href="#">1</a></li>
@@ -448,7 +449,7 @@ if (!isset($_SESSION['email'])) {
                     <div><img src="./assets/imgs/Illustration.png" /></div>
                     <h3 class="mathunknown">1257</h3>
                     <h4 class="unknownh4">Top <br> Courses</h4>
-                    <p class="fs-40">Take courses from the world’s<br> best instructors and universities. </p>
+                    <p class="fs-40">Take courses from the worlds<br> best instructors and universities. </p>
                 </div>
             </div>
             <div class="col">
