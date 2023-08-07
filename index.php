@@ -248,6 +248,7 @@ if (!isset($_SESSION['email'])) {
 						$res1 = mysqli_num_rows($data1) ?>
 
                     <p class="couresp"><?= $res1 ?></p>
+                  
 
                 </div>
             </div>
