@@ -49,6 +49,8 @@ $id = $_GET['id'];
                     </li>
                     <?php
                     $cur1 = mysqli_query($con, "SELECT * FROM `curicullum` WHERE `curi_id` = $data[id]");
+                  
+
                     while ($data2 = mysqli_fetch_array($cur1)) {
                     ?>
                         <div>
@@ -77,20 +79,68 @@ $id = $_GET['id'];
 
         <div class="col-md-10 mt-3">
             <?php
-            if (!isset($_GET['cid'])) {
-                $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum`")); ?>
-
-                <b><?= $cur1['question'] ?></b><br>
-                <p><?= $cur1['answer'] ?></p>
-            <?php
+              if (!isset($_GET['id'])) {
+                // Default display
+                $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT curi_id, COUNT(*) as count FROM curicullum  GROUP BY curi_id HAVING count > 1;
+                "));
+             
             } else {
-                $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $_GET[cid]")); ?>
+                $currentCid = $_GET['cid'];
+                $nextCid = getNextCid($currentCid);
+                $prevCid = getPrevCid($currentCid);
+        
+                if (isset($_GET['next'])) {
+                    $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $nextCid"));
+                    displayContent($cur1);
+                } elseif (isset($_GET['prev'])) {
+                    $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $prevCid"));
+                    displayContent($cur1);
+                } else {
+                    $cur1 = mysqli_fetch_array(mysqli_query($con, "SELECT * FROM `curicullum` WHERE `id` = $currentCid"));
+                    displayContent($cur1);
+                }
+            }
+            ?>
+            <?php
+        function displayContent($cur1) {
+        ?>
+            <b><?= $cur1['question'] ?></b><br>
+            <p><?= $cur1['answer'] ?></p>
+        <?php
+        }
+        
+        function getNextCid($currentCid) {
+            global $con;
+            $result = mysqli_query($con, "SELECT MAX($currentCid) FROM `curicullum`");
+            $maxId = mysqli_fetch_array($result)[0];
+        
+            return ($currentCid < $maxId) ? $currentCid + 1 : $currentCid;
+        }
+        
+        function getPrevCid($currentCid) {
+            return ($currentCid > 1) ? $currentCid - 1 : $currentCid;
+        }
+        ?>
+        <div class="col-md-10 mt-3">
+            <!-- Previous Button -->
+            <?php 
+           
+            if (isset($_GET['cid']) && $_GET['cid'] > 1) { ?>
+                <a href="?id=<?= $id ?>&cid=<?= $_GET['cid'] ?>&prev" class="btn btn-primary">Previous</a>
+            <?php } ?>
+        
+            <!-- Next Button -->
+            <?php
+            $result = mysqli_query($con, "SELECT MAX(`id`) FROM `curicullum`");
+            $maxId = mysqli_fetch_array($result)[0];
+            if (isset($_GET['cid']) && $_GET['cid'] < $maxId) {
+            ?>
+                <a href="?id=<?= $id ?>&cid=<?= $_GET['cid'] ?>&next" class="btn btn-primary">Next</a>
+            <?php 
+        // Add this line before executing the query
 
 
-                <b><?= $cur1['question'] ?></b><br>
-                <p><?= $cur1['answer'] ?></p>
-
-            <?php    } ?>
+        } ?>
         </div>
     </div> <?php include 'footer.php' ?>
 </div>
